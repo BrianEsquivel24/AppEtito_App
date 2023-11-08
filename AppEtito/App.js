@@ -1,21 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { Container, Text, Heading, Center, NativeBaseProvider } from "native-base";
+import { NavigationContainer } from '@react-navigation/native'
+import Navigation from "./Components/Navigation";
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>HOLA cara de bolota</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <NativeBaseProvider>
+        <Navigation/> 
+      </NativeBaseProvider>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};

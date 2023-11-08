@@ -5,10 +5,19 @@ Instalarlo adentro de la subcarpeta "AppEtito". No lo instalen en el proyecto gl
 
 07/11/23
 
+//Estas instalaciones son para navegacion
 npm install @react-navigation/native
 npx expo install react-native-screens react-native-safe-area-context
 npm install @react-navigation/stack
 npm install react-native-gesture-handler
 npm install @react-navigation/bottom-tabs
 
+//Esta instalacion es para las peticiones al backend. Es axios
 npm install axios
+
+//Esta instañlación es para poner iconos en el proyecto. Se ponen asi import {Ionicons} from @vector-icons
+npm install @expo/vector-icons
+
+//Instalacion en caso de que usen en web
+npx expo install react-native-web@~0.19.6 @expo/webpack-config@^19.0.0
+npm install normalize-css-color
