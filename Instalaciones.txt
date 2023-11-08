@@ -1,0 +1,14 @@
+Instalar todo en cmd, no en powershell
+
+Intalar todo dentro de la carpeta AppEtito
+Instalarlo adentro de la subcarpeta "AppEtito". No lo instalen en el proyecto global.
+
+07/11/23
+
+npm install @react-navigation/native
+npx expo install react-native-screens react-native-safe-area-context
+npm install @react-navigation/stack
+npm install react-native-gesture-handler
+npm install @react-navigation/bottom-tabs
+
+npm install axios
