@@ -3,15 +3,16 @@ import { View, Text, Button, TextInput } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     // Realiza la solicitud Axios al backend Django
-    axios.post('http://0.0.0.0:8000/login/', {
-      username: username,
+    axios.post('http://127.0.0.1:8000/api/login/', {
+      nombre: username,
       password: password,
+      
     })
       .then(function (response) {
         // Maneja la respuesta del servidor aquí
@@ -24,7 +25,7 @@ const Login = ({navigation}) => {
           // Navega a la pantalla de usuario regular
           navigation.navigate('UserHome');
         } else {
-          // Usuario no encontrado, maneja el caso según tus necesidades
+          console.log("Usuario no encontrado")
         }
       })
       .catch(function (error) {

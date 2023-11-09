@@ -21,3 +21,11 @@ npm install @expo/vector-icons
 //Instalacion en caso de que usen en web
 npx expo install react-native-web@~0.19.6 @expo/webpack-config@^19.0.0
 npm install normalize-css-color
+
+08/11/23
+
+//Vamos a intentar hacer que jalen las rutas, para esto debemos instalar lo siguiente en la 
+carpeta de backend
+
+pip install django-cors-headers
+
