@@ -8,28 +8,30 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Realiza la solicitud Axios al backend Django
+    //peticion al back
     axios.post('http://127.0.0.1:8000/api/login/', {
       nombre: username,
       password: password,
       
     })
       .then(function (response) {
-        // Maneja la respuesta del servidor aquí
+        //aqui checa si es admin o user
         console.log(response.data.role)
         const userRole = response.data.role;
         if (userRole === 'admin') {
           // Navega a la pantalla de administrador
-          navigation.navigate('AdminHome');
+          navigation.navigate('AdminCrud');
         } else if (userRole === 'user') {
           // Navega a la pantalla de usuario regular
           navigation.navigate('UserHome');
         } else {
+          //falta poner un modal o algo que aparezca si no encuentra el usuario
+          //ni en admin ni en user
           console.log("Usuario no encontrado")
         }
       })
       .catch(function (error) {
-        // Maneja errores aquí
+        //los errores
         console.log(error);
       });
   };

@@ -1,19 +1,27 @@
 import React from "react";
-import { Center, NativeBaseProvider } from "native-base";
+import { Center, Container, Heading, NativeBaseProvider, VStack, Button } from "native-base";
 
-const Example2 = () => {
-  return <Center>
-      <Center bg="primary.400" _text={{
-      color: "white",
-      fontWeight: "bold"
-    }} height={200} width={{
-      base: 200,
-      lg: 250
-    }}>
-        This is the Center in admin
+const AdminHome = ({navigation}) => {
+  return (
+      <Center flex={1} >
+        <Container>
+          <Heading  mb={4}>
+            Welcome Admin
+          </Heading>
+          <VStack space={2} flex={1} justifyContent="flex-end">
+            {/* Agrega botones aquí según tus necesidades */}
+            <Button size="lg" onPress={()=>navigation.navigate('AdminScreen')} >Admins</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('UserScreen')}>Users</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('FoodScreen')}>Foods</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('LocationScreen')}>Locations</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('RestaurantScreen')}>Restaurants</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('CategoryScreen')}>Categories</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('PaymentMethodScreen')}>Payment Methods</Button>
+          </VStack>
+        </Container>
       </Center>
-    </Center>;
+  );
 }
 
-export default Example2
+export default AdminHome
     
