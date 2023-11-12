@@ -10,7 +10,7 @@ const AdminHome = ({navigation}) => {
           </Heading>
           <VStack space={2} flex={1} justifyContent="flex-end">
             {/* Agrega botones aquí según tus necesidades */}
-            <Button size="lg" onPress={()=>navigation.navigate('AdminScreen')} >Admins</Button>
+            <Button size="lg" onPress={()=>navigation.navigate('AdminCrud')} >Admins</Button>
             <Button size="lg" onPress={()=>navigation.navigate('UserScreen')}>Users</Button>
             <Button size="lg" onPress={()=>navigation.navigate('FoodScreen')}>Foods</Button>
             <Button size="lg" onPress={()=>navigation.navigate('LocationScreen')}>Locations</Button>

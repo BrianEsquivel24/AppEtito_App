@@ -32,3 +32,9 @@ pip install django-cors-headers
 //vamos a hacer seeders por lo que hay que instalar unas cositas
 
 pip install django-seed
+
+//biblioteca para que nos deje seleccionar una imagen desde nuestro dispositiv
+
+npm install react-native-image-picker
+
+//correr el servidor con 0.0.0.0

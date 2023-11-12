@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-le2soc2$o@yyqu5hc$qnx9w!r%exvq^3en4n&(wse5*mt*=fvc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '192.168.1.73']
 
 
 # Application definition
@@ -161,10 +161,10 @@ SIMPLE_JWT = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-#CORS_ALLOWED_ORIGINS = [
-#   "http://localhost:3000",  # Reemplaza con la URL de tu aplicación Expo
-#   Otras URLs permitidas, si es necesario
-#]
+CORS_ALLOWED_ORIGINS = [
+   "http://192.168.1.73:8081",  # Reemplaza con la URL de tu aplicación Expo
+   
+]
 
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 CORS_ALLOW_HEADERS = ['Content-Type']
