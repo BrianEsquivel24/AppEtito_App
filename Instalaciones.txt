@@ -29,3 +29,6 @@ carpeta de backend
 
 pip install django-cors-headers
 
+//vamos a hacer seeders por lo que hay que instalar unas cositas
+
+pip install django-seed
