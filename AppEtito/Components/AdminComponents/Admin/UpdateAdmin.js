@@ -3,13 +3,14 @@ import { View, Text, Button, Input, ScrollView, Image } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
-const AgregarAdmin = ({ navigation }) => {
-  const [nombre, setNombre] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone_number, setPhoneNumber] = useState('');
-  const [photo, setPhoto] = useState(null);
+const UpdateAdmin = ({ route, navigation }) => {
+  const { admin } = route.params;
+  const [nombre, setNombre] = useState(admin.nombre);
+  const [address, setAddress] = useState(admin.address);
+  const [email, setEmail] = useState(admin.email);
+  const [password, setPassword] = useState(admin.password);
+  const [phone_number, setPhoneNumber] = useState(admin.phone_number);
+  const [photo, setPhoto] = useState(admin.photo);
 
   useEffect(() => {
     // Solicitar permisos al cargar el componente
@@ -31,14 +32,14 @@ const AgregarAdmin = ({ navigation }) => {
       });
 
       if (!result.cancelled) {
-        setPhoto(result);
+        setPhoto(result.uri);
       }
     } catch (error) {
       console.error('Error al seleccionar la imagen:', error);
     }
   };
 
-  const handleAdd = async () => {
+  const handleUpdate = async () => {
     try {
       const formData = new FormData();
       formData.append('nombre', nombre);
@@ -48,21 +49,21 @@ const AgregarAdmin = ({ navigation }) => {
       formData.append('phone_number', phone_number);
 
       if (photo) {
-        const uriParts = photo.uri.split('.');
+        const uriParts = photo.split('.');
         const fileType = uriParts[uriParts.length - 1];
 
         // Generar un nombre único para el archivo basado en el sello de tiempo
         const fileName = `photo_${Date.now()}.${fileType}`;
 
         formData.append('photo', {
-          uri: photo.uri,
+          uri: photo,
           name: fileName,
           type: `image/${fileType}`,
         });
       }
 
-      const response = await axios.post(
-        'http://192.168.1.73:8000/api/admin/',
+      const response = await axios.put(
+        `http://192.168.1.73:8000/api/admin/${admin.id}`,
         formData,
         {
           headers: {
@@ -71,17 +72,16 @@ const AgregarAdmin = ({ navigation }) => {
         }
       );
 
-      console.log('Administrador agregado exitosamente:', response.data);
+      console.log('Administrador actualizado exitosamente:', response.data);
       navigation.navigate('AdminScreen');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         console.error('Error de validación:', error.response.data);
       } else {
-        console.error('Error al agregar el administrador:', error);
+        console.error('Error al actualizar el administrador:', error);
       }
     }
   };
-
 
   return (
     <ScrollView>
@@ -127,11 +127,11 @@ const AgregarAdmin = ({ navigation }) => {
 
       {photo && <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada"/>}
 
-      <Button onPress={handleAdd} full title="Agregar Administrador">
-        <Text>Agregar Administrador</Text>
+      <Button onPress={handleUpdate} full title="Actualizar Administrador">
+        <Text>Actualizar Administrador</Text>
       </Button>
     </ScrollView>
   );
 };
 
-export default AgregarAdmin;
+export default UpdateAdmin;

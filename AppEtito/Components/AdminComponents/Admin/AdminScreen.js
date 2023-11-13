@@ -38,7 +38,7 @@ const AdminScreen = () => {
   };
 
   const editarAdmin = (item) => {
-    navigation.navigate('EditarAdmin', { admin: item });
+    navigation.navigate('UpdateAdmin', { admin: item });
   };
 
   const borrarAdmin = async (id) => {

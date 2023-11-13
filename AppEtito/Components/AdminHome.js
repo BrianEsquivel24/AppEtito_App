@@ -1,27 +1,77 @@
 import React from "react";
-import { Center, Container, Heading, NativeBaseProvider, VStack, Button } from "native-base";
+import { Center, Container, Heading, NativeBaseProvider, VStack, Button, HStack,Icon} from "native-base";
+import { Ionicons } from '@expo/vector-icons'; // Asegúrate de tener instalado este paquete
 
-const AdminHome = ({navigation}) => {
+
+const AdminHome = ({ navigation }) => {
   return (
-      <Center flex={1} >
-        <Container>
-          <Heading  mb={4}>
-            Welcome Admin
-          </Heading>
-          <VStack space={2} flex={1} justifyContent="flex-end">
-            {/* Agrega botones aquí según tus necesidades */}
-            <Button size="lg" onPress={()=>navigation.navigate('AdminCrud')} >Admins</Button>
-            <Button size="lg" onPress={()=>navigation.navigate('UserScreen')}>Users</Button>
-            <Button size="lg" onPress={()=>navigation.navigate('FoodScreen')}>Foods</Button>
-            <Button size="lg" onPress={()=>navigation.navigate('LocationScreen')}>Locations</Button>
-            <Button size="lg" onPress={()=>navigation.navigate('RestaurantScreen')}>Restaurants</Button>
-            <Button size="lg" onPress={()=>navigation.navigate('CategoryScreen')}>Categories</Button>
-            <Button size="lg" onPress={()=>navigation.navigate('PaymentMethodScreen')}>Payment Methods</Button>
-          </VStack>
-        </Container>
-      </Center>
+    <Center flex={1}>
+    <Container alignItems="center">
+      <Heading mb={10} >Welcome Admin</Heading>
+      <VStack  space={2}  justifyContent="center" alignItems="center">
+        <Button  size="lg"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={3}
+            width="100%"
+            rounded="full"
+            startIcon={<Icon as={Ionicons} name="people" size={4} />}
+            _text={{ textAlign: 'left', marginLeft: 2 }}
+            
+          >
+          Admins</Button>
+          
+        <Button  size="lg" alignItems="center"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={3}
+            width="108%" // Ajusta el ancho al 100%
+            rounded="full" 
+            startIcon={<Icon as={Ionicons} name="people" size={4} />}
+            >Users</Button>
+        <Button  size="lg"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={3}
+            width="108%" // Ajusta el ancho al 100%
+            rounded="full" 
+            alignItems="center"
+            startIcon={<Icon as={Ionicons} name="pizza" size={4} />}
+            >Foods</Button>
+        <Button  size="lg"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={3}
+            width="100%" // Ajusta el ancho al 100%
+            rounded="full" 
+            startIcon={<Icon as={Ionicons} name="navigate" size={4} />}>Locations</Button>
+        <Button  size="lg"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={3}
+            width="100%" // Ajusta el ancho al 100%
+            rounded="full" 
+            startIcon={<Icon as={Ionicons} name="beer" size={4} />}>Restaurants</Button>
+        <Button  size="lg"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={3}
+            width="100%" // Ajusta el ancho al 100%
+            rounded="full" 
+            startIcon={<Icon as={Ionicons} name="bookmarks" size={4} />}
+            >Categories</Button>
+        <Button  size="lg"
+            onPress={() => navigation.navigate('AdminCrud')}
+            bg="success.600"
+            mb={2}
+            width="90%" // Ajusta el ancho al 100%
+            rounded="full"
+            justifyContent="center" 
+            startIcon={<Icon as={Ionicons} name="cart" size={4} />}>Payment Methods</Button>
+      </VStack>
+    </Container>
+  </Center>
   );
 }
 
-export default AdminHome
-    
+export default AdminHome;

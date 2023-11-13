@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 //components Admin
 import AdminScreen from './AdminComponents/Admin/AdminScreen'
 import AgregarAdmin from './AdminComponents/Admin/CreateAdmin';
+import UpdateAdmin from './AdminComponents/Admin/UpdateAdmin';
 
 import CategoryScreen from './AdminComponents/Category/CategoryScreen'
 import FoodScreen from './AdminComponents/Food/FoodScreen'
@@ -33,6 +34,7 @@ export const AdminCrud = () => {
         <StackAdminCrud.Navigator>
             <StackAdminCrud.Screen name='AdminScreen' component={AdminScreen} />
             <StackAdminCrud.Screen name='AgregarAdmin' component={AgregarAdmin} />
+            <StackAdminCrud.Screen name='UpdateAdmin' component={UpdateAdmin}/>
         </StackAdminCrud.Navigator>
     )
 }
