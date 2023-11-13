@@ -41,12 +41,12 @@ const AdminScreen = () => {
     navigation.navigate('UpdateAdmin', { admin: item });
   };
 
-  const borrarAdmin = async (id) => {
+  const handleDeleteAdmin = async (id) => {
     try {
-      await axios.delete(`https://tu-api.com/tu-ruta/${id}`);
-      setData(data.filter(item => item.id !== id));
+      await axios.delete(`http://192.168.1.73:8000/api/admin/${id}/`);
+      setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
-      console.error('Error deleting data:', error);
+      console.error('Error deleting admin:', error.message);
     }
   };
 
@@ -65,7 +65,7 @@ const AdminScreen = () => {
               <Button onPress={() => editarAdmin(item)} my={2}>
                 <Text>Editar</Text>
               </Button>
-              <Button onPress={() => borrarAdmin(item.id)} my={2}>
+              <Button onPress={() => handleDeleteAdmin(item.id)} my={2}>
                 <Text>Eliminar</Text>
               </Button>
             </Box>

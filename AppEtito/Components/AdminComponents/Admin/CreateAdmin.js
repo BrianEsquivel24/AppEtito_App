@@ -30,8 +30,8 @@ const AgregarAdmin = ({ navigation }) => {
         quality: 1,
       });
 
-      if (!result.cancelled) {
-        setPhoto(result);
+      if (!result.canceled) {
+        setPhoto(result.uri);
       }
     } catch (error) {
       console.error('Error al seleccionar la imagen:', error);
@@ -46,21 +46,21 @@ const AgregarAdmin = ({ navigation }) => {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('phone_number', phone_number);
-
+  
       if (photo) {
-        const uriParts = photo.uri.split('.');
+        const uriParts = (photo || '').split('.');  // Verifica si photo está definido
         const fileType = uriParts[uriParts.length - 1];
-
+  
         // Generar un nombre único para el archivo basado en el sello de tiempo
         const fileName = `photo_${Date.now()}.${fileType}`;
-
+  
         formData.append('photo', {
-          uri: photo.uri,
+          uri: photo,
           name: fileName,
           type: `image/${fileType}`,
         });
       }
-
+  
       const response = await axios.post(
         'http://192.168.1.73:8000/api/admin/',
         formData,
@@ -70,7 +70,7 @@ const AgregarAdmin = ({ navigation }) => {
           },
         }
       );
-
+  
       console.log('Administrador agregado exitosamente:', response.data);
       navigation.navigate('AdminScreen');
     } catch (error) {
