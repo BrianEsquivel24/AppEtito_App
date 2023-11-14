@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Ionicons } from '@expo/vector-icons';
+
+//imports screens de user
+import Perfil from './UsersComponents/Profile';
+//imports screens
+import Search from './UsersComponents/Search';
+import RestaurantList from './UsersComponents/RestaurantList';
+
+import Cart from './UsersComponents/Cart';
+
+//imports de home
+import Home from './Home';
+
 
 //imports screans de admin 
 
@@ -44,7 +57,93 @@ import Example from './Home';
 import AdminHome from './AdminHome';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Bottom = createBottomTabNavigator();
+const AgregDirec = createStackNavigator();
+const Restaurants = createStackNavigator();
+
+export const HomeBottons = () => {
+    return (
+        <AgregDirec.Navigator>
+            <AgregDirec.Screen name='Home' component={Home} options={{ headerShown: false }}/>
+            <AgregDirec.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }}/>
+            
+        </AgregDirec.Navigator>
+    )
+}
+
+export const SearchBottons = () => {
+    return (
+        <Restaurants.Navigator>
+            <Restaurants.Screen name='Search' component={Search} options={{ headerShown: false }}/>
+            <Restaurants.Screen name='RestaurantList' component={RestaurantList} options={{ headerShown: false }}/>
+            
+        </Restaurants.Navigator>
+    )
+}
+
+const Tab = createBottomTabNavigator();
+
+export const NavTab = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen
+          name="HomeBottons"
+          component={HomeBottons}
+          options={{
+            tabBarLabel: 'Inicio',
+            tabBarIcon: ({ color, size, focused }) => (
+              <Ionicons
+                name={focused ? 'home' : 'home-outline'}
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="SearchBottons"
+          component={SearchBottons}
+          options={{
+            tabBarLabel: 'Búsqueda',
+            tabBarIcon: ({ color, size, focused }) => (
+              <Ionicons
+                name={focused ? 'search' : 'search-outline'}
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Cart"
+          component={Cart}
+          options={{
+            tabBarLabel: 'Carrito',
+            tabBarIcon: ({ color, size, focused }) => (
+              <Ionicons
+                name={focused ? 'cart' : 'cart-outline'}
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Perfil"
+          component={Perfil}
+          options={{
+            tabBarLabel: 'Perfil',
+            tabBarIcon: ({ color, size, focused }) => (
+              <Ionicons
+                name={focused ? 'person' : 'person-outline'}
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  };
 
 const Stack = createStackNavigator();
 
@@ -131,7 +230,7 @@ export const PaymentMethodCrud = () => {
 export const AdminNav = () => {
     return (
         <StackAdmin.Navigator>
-            <StackAdmin.Screen name='AdminHome' component={AdminHome} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='AdminHome' component={AdminHome}  options={{ headerShown: false}}/>
             <StackAdmin.Screen name='AdminCrud' component={AdminCrud} options={{ headerShown: false }}/>
             <StackAdmin.Screen name='CategoryCrud' component={CategoryCrud} options={{ headerShown: false }}/>
             <StackAdmin.Screen name='FoodCrud' component={FoodCrud} options={{ headerShown: false }}/>
@@ -150,7 +249,7 @@ const Navigation = () => {
         <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             <Stack.Screen name="AdminView" component={AdminNav} options={{ headerShown: false }} />
-            <Stack.Screen name="UserHome" component={Example} options={{ headerShown: false }} />
+            <Stack.Screen name="UserHome" component={NavTab} options={{ headerShown: false }} />
         </Stack.Navigator>
     );
 };
