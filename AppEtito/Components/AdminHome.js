@@ -22,7 +22,7 @@ const AdminHome = ({ navigation }) => {
           Admins</Button>
           
         <Button  size="lg" alignItems="center"
-            onPress={() => navigation.navigate('AdminCrud')}
+            onPress={() => navigation.navigate('CategoryCrud')}
             bg="success.600"
             mb={3}
             width="108%" // Ajusta el ancho al 100%
@@ -30,7 +30,7 @@ const AdminHome = ({ navigation }) => {
             startIcon={<Icon as={Ionicons} name="people" size={4} />}
             >Users</Button>
         <Button  size="lg"
-            onPress={() => navigation.navigate('AdminCrud')}
+            onPress={() => navigation.navigate('FoodCrud')}
             bg="success.600"
             mb={3}
             width="108%" // Ajusta el ancho al 100%
@@ -46,14 +46,14 @@ const AdminHome = ({ navigation }) => {
             rounded="full" 
             startIcon={<Icon as={Ionicons} name="navigate" size={4} />}>Locations</Button>
         <Button  size="lg"
-            onPress={() => navigation.navigate('AdminCrud')}
+            onPress={() => navigation.navigate('RestaurantCrud')}
             bg="success.600"
             mb={3}
             width="100%" // Ajusta el ancho al 100%
             rounded="full" 
             startIcon={<Icon as={Ionicons} name="beer" size={4} />}>Restaurants</Button>
         <Button  size="lg"
-            onPress={() => navigation.navigate('AdminCrud')}
+            onPress={() => navigation.navigate('CategoryCrud')}
             bg="success.600"
             mb={3}
             width="100%" // Ajusta el ancho al 100%

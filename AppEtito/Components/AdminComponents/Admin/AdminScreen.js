@@ -12,19 +12,17 @@ const AdminScreen = () => {
       try {
         const response = await axios.get('http://192.168.1.73:8000/api/admin/', {
           headers: {
-            // Add any headers you need here
             'Content-Type': 'multipart/form-data',
-            'Accept': 'application/json', // Example header, adjust as needed
-            // 'Authorization': 'Bearer YourToken', // Add an authorization header if needed
+            'Accept': 'application/json', 
+
           },
         });
         setData(response.data);
       } catch (error) {
         if (error.isAxiosError && !error.response) {
-          // Handle network errors
           console.error('Network Error:', error.message);
         } else {
-          // Handle other errors
+
           console.error('Error:', error);
         }
       }
@@ -55,7 +53,7 @@ const AdminScreen = () => {
       <Container>
         <Center>
           <Button onPress={agregarAdmin} full>
-            <Text>Agregar Producto</Text>
+            <Text>Agregar Admin</Text>
           </Button>
 
           {data.map((item) => (
