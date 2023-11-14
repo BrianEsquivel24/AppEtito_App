@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Content, Text, Button, Box, Image, Center, ScrollView } from 'native-base';
+import { Container, Heading, Text, Button, Box, Image, Center, ScrollView } from 'native-base';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
@@ -48,8 +48,9 @@ const CategoryScreen = () => {
 
   return (
     <ScrollView>
-      <Container>
+      <Container style={{ paddingTop: 40 }} alignItems="center">
         <Center>
+        <Heading>CATEGORY</Heading>
           <Button onPress={agregarCategory} full>
             <Text>Agregar Category</Text>
           </Button>

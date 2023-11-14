@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -21,7 +21,7 @@ const AgregarRestaurant = ({ navigation }) => {
       }
     })();
 
-    
+
 
     fetchCategories();
   }, []);
@@ -37,7 +37,7 @@ const AgregarRestaurant = ({ navigation }) => {
     }
   };
 
-  
+
   const handlePickDocument = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -89,66 +89,69 @@ const AgregarRestaurant = ({ navigation }) => {
       console.log('Restaurante agregado exitosamente:', response.data);
       navigation.navigate('RestaurantScreen');
     } catch (error) {
-        if (error.response && error.response.status === 400) {
-            console.error('Error de validación:', error.response.data);
-          } else {
-            console.error('Error al agregar el restaurante:', error);
-          }
+      if (error.response && error.response.status === 400) {
+        console.error('Error de validación:', error.response.data);
+      } else {
+        console.error('Error al agregar el restaurante:', error);
+      }
     }
   };
 
   return (
     <ScrollView>
-      <Text>Nombre:</Text>
-      <Input
-        value={name}
-        onChangeText={(text) => setName(text)}
-        placeholder="Ingrese el nombre"
-      />
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>CREATE RESTAURANT</Heading>
+        <Text>Nombre:</Text>
+        <Input
+          value={name}
+          onChangeText={(text) => setName(text)}
+          placeholder="Ingrese el nombre"
+        />
 
-      <Text>Description:</Text>
-      <Input
-        value={description}
-        onChangeText={(text) => setDescription(text)}
-        placeholder="Ingrese la description"
-      />
+        <Text>Description:</Text>
+        <Input
+          value={description}
+          onChangeText={(text) => setDescription(text)}
+          placeholder="Ingrese la description"
+        />
 
-      <Text>Location:</Text>
-      <Input
-        value={location}
-        onChangeText={(text) => setLocation(text)}
-        placeholder="Ingrese la location"
-      />
+        <Text>Location:</Text>
+        <Input
+          value={location}
+          onChangeText={(text) => setLocation(text)}
+          placeholder="Ingrese la location"
+        />
 
-      <Text>Sucursales:</Text>
-      <Input
-        value={branches}
-        onChangeText={(text) => setBranches(text)}
-        placeholder="Ingrese la cantidad de sucursales"
-      />
+        <Text>Sucursales:</Text>
+        <Input
+          value={branches}
+          onChangeText={(text) => setBranches(text)}
+          placeholder="Ingrese la cantidad de sucursales"
+        />
 
-      <Text>Categoría:</Text>
-      <Select
-        selectedValue={categoryId}
-        minWidth="200"
-        accessibilityLabel="Selecciona una categoría"
-        placeholder="Selecciona una categoría"
-        onValueChange={(text) => setCategoryId(text)}
-      >
-        {categories.map((category) => (
-          <Select.Item key={category.id} label={`${category.id} - ${category.name}`} value={category.id} />
-        ))}
-      </Select>
+        <Text>Categoría:</Text>
+        <Select
+          selectedValue={categoryId}
+          minWidth="200"
+          accessibilityLabel="Selecciona una categoría"
+          placeholder="Selecciona una categoría"
+          onValueChange={(text) => setCategoryId(text)}
+        >
+          {categories.map((category) => (
+            <Select.Item key={category.id} label={`${category.id} - ${category.name}`} value={category.id} />
+          ))}
+        </Select>
 
-      <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-        <Text>Seleccionar Archivo</Text>
-      </Button>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+          <Text>Seleccionar Archivo</Text>
+        </Button>
 
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada"/>}
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-      <Button onPress={handleAdd} full title="Agregar Administrador">
-        <Text>Agregar Restaurant</Text>
-      </Button>
+        <Button onPress={handleAdd} full title="Agregar Administrador">
+          <Text>Agregar Restaurant</Text>
+        </Button>
+      </Container>
     </ScrollView>
   );
 };

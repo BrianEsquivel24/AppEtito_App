@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image, Select } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Select, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -60,7 +60,7 @@ const UpdateLocation = ({ route, navigation }) => {
 
             formData.append('user', userId);
 
-           
+
 
             const response = await axios.put(
                 `http://192.168.1.73:8000/api/locations/${location.id}/`,
@@ -85,44 +85,47 @@ const UpdateLocation = ({ route, navigation }) => {
 
     return (
         <ScrollView>
-            <Text>Address:</Text>
-            <Input
-                value={address}
-                onChangeText={(text) => setAddress(text)}
-                placeholder="Ingrese la address"
-            />
+            <Container style={{ paddingTop: 40 }} alignItems="center">
+                <Heading>UPDATE LOCATION</Heading>
+                <Text>Address:</Text>
+                <Input
+                    value={address}
+                    onChangeText={(text) => setAddress(text)}
+                    placeholder="Ingrese la address"
+                />
 
-            <Text>Address Number:</Text>
-            <Input
-                value={addressNumber}
-                onChangeText={(text) => setAddressNumber(text)}
-                placeholder="Ingrese la address number"
-            />
+                <Text>Address Number:</Text>
+                <Input
+                    value={addressNumber}
+                    onChangeText={(text) => setAddressNumber(text)}
+                    placeholder="Ingrese la address number"
+                />
 
-            <Text>Description:</Text>
-            <Input
-                value={description}
-                onChangeText={(text) => setDescription(text)}
-                placeholder="Ingrese la descripcion"
-            />
+                <Text>Description:</Text>
+                <Input
+                    value={description}
+                    onChangeText={(text) => setDescription(text)}
+                    placeholder="Ingrese la descripcion"
+                />
 
-            <Text>Users:</Text>
-            <Select
-                selectedValue={userId}
-                minWidth="200"
-                accessibilityLabel="Selecciona una categoría"
-                placeholder="Selecciona una categoría"
-                onValueChange={(text) => setUserId(text)}  // Corregir aquí
-            >
-                {users.map((users) => (
-                    <Select.Item key={users.id} label={`${users.id} - ${users.nombre}`} value={users.id} />
-                ))}
-            </Select>
+                <Text>Users:</Text>
+                <Select
+                    selectedValue={userId}
+                    minWidth="200"
+                    accessibilityLabel="Selecciona una categoría"
+                    placeholder="Selecciona una categoría"
+                    onValueChange={(text) => setUserId(text)}  // Corregir aquí
+                >
+                    {users.map((users) => (
+                        <Select.Item key={users.id} label={`${users.id} - ${users.nombre}`} value={users.id} />
+                    ))}
+                </Select>
 
 
-            <Button onPress={handleUpdate} full title="Actualizar Administrador">
-                <Text>Actualizar User</Text>
-            </Button>
+                <Button onPress={handleUpdate} full title="Actualizar Administrador">
+                    <Text>Actualizar User</Text>
+                </Button>
+            </Container>
         </ScrollView>
     );
 };

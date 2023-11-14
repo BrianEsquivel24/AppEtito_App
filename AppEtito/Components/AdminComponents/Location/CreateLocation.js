@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -84,44 +84,47 @@ const AgregarLocation = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <Text>Address:</Text>
-            <Input
-                value={address}
-                onChangeText={(text) => setAddress(text)}
-                placeholder="Ingrese la direccion"
-            />
+            <Container  style={{ paddingTop: 40 }} alignItems="center">
+                <Heading>CREATE LOCATION</Heading>
+                <Text>Address:</Text>
+                <Input
+                    value={address}
+                    onChangeText={(text) => setAddress(text)}
+                    placeholder="Ingrese la direccion"
+                />
 
-            <Text>Address Number:</Text>
-            <Input
-                value={addressNumber}
-                onChangeText={(text) => setAddressNumber(text)}
-                placeholder="Ingrese la location"
-            />
+                <Text>Address Number:</Text>
+                <Input
+                    value={addressNumber}
+                    onChangeText={(text) => setAddressNumber(text)}
+                    placeholder="Ingrese la location"
+                />
 
-            <Text>Description:</Text>
-            <Input
-                value={description}
-                onChangeText={(text) => setDescription(text)}
-                placeholder="Ingrese la description"
-            />
+                <Text>Description:</Text>
+                <Input
+                    value={description}
+                    onChangeText={(text) => setDescription(text)}
+                    placeholder="Ingrese la description"
+                />
 
-            <Text>User:</Text>
-            <Select
-                selectedValue={userId}
-                minWidth="200"
-                accessibilityLabel="Selecciona una categoría"
-                placeholder="Selecciona una categoría"
-                onValueChange={(text) => setUserId(text)}
-            >
-                {users.map((users) => (
-                    <Select.Item key={users.id} label={`${users.id} - ${users.nombre}`} value={users.id} />
-                ))}
-            </Select>
+                <Text>User:</Text>
+                <Select
+                    selectedValue={userId}
+                    minWidth="200"
+                    accessibilityLabel="Selecciona una categoría"
+                    placeholder="Selecciona una categoría"
+                    onValueChange={(text) => setUserId(text)}
+                >
+                    {users.map((users) => (
+                        <Select.Item key={users.id} label={`${users.id} - ${users.nombre}`} value={users.id} />
+                    ))}
+                </Select>
 
 
-            <Button onPress={handleAdd} full title="Agregar Administrador">
-                <Text>Agregar Location</Text>
-            </Button>
+                <Button onPress={handleAdd} full title="Agregar Administrador">
+                    <Text>Agregar Location</Text>
+                </Button>
+            </Container>
         </ScrollView>
     );
 };

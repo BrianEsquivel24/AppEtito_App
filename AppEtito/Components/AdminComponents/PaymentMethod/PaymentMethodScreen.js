@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Content, Text, Button, Box, Image, Center, ScrollView } from 'native-base';
+import { Container, Content, Text, Button, Box, Image, Center, ScrollView, Heading } from 'native-base';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
@@ -50,7 +50,8 @@ const PaymentMethodScreen = () => {
 
   return (
     <ScrollView>
-      <Container>
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>PAYMENT METHOD</Heading>
         <Center>
           <Button onPress={agregarPaymentMethod} full>
             <Text>Agregar Card</Text>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -97,49 +97,52 @@ const AgregarFood = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Text>Nombre:</Text>
-      <Input
-        value={name}
-        onChangeText={(text) => setName(text)}
-        placeholder="Ingrese el nombre"
-      />
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>CREATE FOOD</Heading>
+        <Text>Nombre:</Text>
+        <Input
+          value={name}
+          onChangeText={(text) => setName(text)}
+          placeholder="Ingrese el nombre"
+        />
 
-      <Text>Description:</Text>
-      <Input
-        value={description}
-        onChangeText={(text) => setDescription(text)}
-        placeholder="Ingrese la description"
-      />
+        <Text>Description:</Text>
+        <Input
+          value={description}
+          onChangeText={(text) => setDescription(text)}
+          placeholder="Ingrese la description"
+        />
 
-      <Text>Price:</Text>
-      <Input
-        value={price}
-        onChangeText={(text) => setPrice(text)}
-        placeholder="Ingrese el precio"
-      />
+        <Text>Price:</Text>
+        <Input
+          value={price}
+          onChangeText={(text) => setPrice(text)}
+          placeholder="Ingrese el precio"
+        />
 
-      <Text>Restaurant:</Text>
-      <Select
-        selectedValue={restaurantId.toString()} // Convierte a cadena
-        minWidth="200"
-        accessibilityLabel="Selecciona un restaurante"
-        placeholder="Selecciona un restaurante"
-        onValueChange={(value) => setRestaurantId(parseInt(value, 10))} // Convierte a número
-      >
-        {restaurants.map((food) => (
-          <Select.Item key={food.id} label={`${food.id} - ${food.name}`} value={food.id.toString()} />
-        ))}
-      </Select>
+        <Text>Restaurant:</Text>
+        <Select
+          selectedValue={restaurantId.toString()} // Convierte a cadena
+          minWidth="200"
+          accessibilityLabel="Selecciona un restaurante"
+          placeholder="Selecciona un restaurante"
+          onValueChange={(value) => setRestaurantId(parseInt(value, 10))} // Convierte a número
+        >
+          {restaurants.map((food) => (
+            <Select.Item key={food.id} label={`${food.id} - ${food.name}`} value={food.id.toString()} />
+          ))}
+        </Select>
 
-      <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-        <Text>Seleccionar Archivo</Text>
-      </Button>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+          <Text>Seleccionar Archivo</Text>
+        </Button>
 
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-      <Button onPress={handleAdd} full title="Agregar Administrador">
-        <Text>Agregar Restaurant</Text>
-      </Button>
+        <Button onPress={handleAdd} full title="Agregar Administrador">
+          <Text>Agregar Restaurant</Text>
+        </Button>
+      </Container>
     </ScrollView>
   );
 };

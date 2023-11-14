@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -46,21 +46,21 @@ const AgregarAdmin = ({ navigation }) => {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('phone_number', phone_number);
-  
+
       if (photo) {
         const uriParts = (photo || '').split('.');  // Verifica si photo está definido
         const fileType = uriParts[uriParts.length - 1];
-  
+
         // Generar un nombre único para el archivo basado en el sello de tiempo
         const fileName = `photo_${Date.now()}.${fileType}`;
-  
+
         formData.append('photo', {
           uri: photo,
           name: fileName,
           type: `image/${fileType}`,
         });
       }
-  
+
       const response = await axios.post(
         'http://192.168.1.73:8000/api/admin/',
         formData,
@@ -70,7 +70,7 @@ const AgregarAdmin = ({ navigation }) => {
           },
         }
       );
-  
+
       console.log('Administrador agregado exitosamente:', response.data);
       navigation.navigate('AdminScreen');
     } catch (error) {
@@ -85,51 +85,54 @@ const AgregarAdmin = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Text>Nombre:</Text>
-      <Input
-        value={nombre}
-        onChangeText={(text) => setNombre(text)}
-        placeholder="Ingrese el nombre"
-      />
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>CREATE ADMIN</Heading>
+        <Text>Nombre:</Text>
+        <Input
+          value={nombre}
+          onChangeText={(text) => setNombre(text)}
+          placeholder="Ingrese el nombre"
+        />
 
-      <Text>Dirección:</Text>
-      <Input
-        value={address}
-        onChangeText={(text) => setAddress(text)}
-        placeholder="Ingrese la dirección"
-      />
+        <Text>Dirección:</Text>
+        <Input
+          value={address}
+          onChangeText={(text) => setAddress(text)}
+          placeholder="Ingrese la dirección"
+        />
 
-      <Text>Email:</Text>
-      <Input
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        placeholder="Ingrese el email"
-      />
+        <Text>Email:</Text>
+        <Input
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          placeholder="Ingrese el email"
+        />
 
-      <Text>Contraseña:</Text>
-      <Input
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        placeholder="Ingrese la contraseña"
-        secureTextEntry
-      />
+        <Text>Contraseña:</Text>
+        <Input
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          placeholder="Ingrese la contraseña"
+          secureTextEntry
+        />
 
-      <Text>Número de teléfono:</Text>
-      <Input
-        value={phone_number}
-        onChangeText={(text) => setPhoneNumber(text)}
-        placeholder="Ingrese el número de teléfono"
-      />
+        <Text>Número de teléfono:</Text>
+        <Input
+          value={phone_number}
+          onChangeText={(text) => setPhoneNumber(text)}
+          placeholder="Ingrese el número de teléfono"
+        />
 
-      <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-        <Text>Seleccionar Archivo</Text>
-      </Button>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+          <Text>Seleccionar Archivo</Text>
+        </Button>
 
-      {photo && <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada"/>}
+        {photo && <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-      <Button onPress={handleAdd} full title="Agregar Administrador">
-        <Text>Agregar Administrador</Text>
-      </Button>
+        <Button onPress={handleAdd} full title="Agregar Administrador">
+          <Text>Agregar Administrador</Text>
+        </Button>
+      </Container>
     </ScrollView>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image, Select } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Select, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -97,50 +97,53 @@ const UpdateFood = ({ route, navigation }) => {
 
     return (
         <ScrollView>
-            <Text>Name:</Text>
-            <Input
-                value={name}
-                onChangeText={(text) => setName(text)}
-                placeholder="Ingrese el nombre"
-            />
+            <Container style={{ paddingTop: 40 }} alignItems="center">
+                <Heading>UPDATE FOOD</Heading>
+                <Text>Name:</Text>
+                <Input
+                    value={name}
+                    onChangeText={(text) => setName(text)}
+                    placeholder="Ingrese el nombre"
+                />
 
-            <Text>Description:</Text>
-            <Input
-                value={description}
-                onChangeText={(text) => setDescription(text)}
-                placeholder="Ingrese la dirección"
-            />
+                <Text>Description:</Text>
+                <Input
+                    value={description}
+                    onChangeText={(text) => setDescription(text)}
+                    placeholder="Ingrese la dirección"
+                />
 
-            <Text>Price:</Text>
-            <Input
-                value={price.toString()}
-                onChangeText={(text) => setPrice(text)}
-                placeholder="Ingrese el precio"
-            />
+                <Text>Price:</Text>
+                <Input
+                    value={price.toString()}
+                    onChangeText={(text) => setPrice(text)}
+                    placeholder="Ingrese el precio"
+                />
 
-            <Text>Restaurante:</Text>
-            <Select
-                selectedValue={restaurantId}
-                minWidth="200"
-                accessibilityLabel="Selecciona un restaurante"
-                placeholder="Selecciona una categoría"
-                onValueChange={(text) => setRestaurantId(text)}  // Corregir aquí
-            >
-                {restaurants.map((restaurant) => (
-                    <Select.Item key={restaurant.id} label={`${restaurant.id} - ${restaurant.name}`} value={restaurant.id} />
-                ))}
-            </Select>
+                <Text>Restaurante:</Text>
+                <Select
+                    selectedValue={restaurantId}
+                    minWidth="200"
+                    accessibilityLabel="Selecciona un restaurante"
+                    placeholder="Selecciona una categoría"
+                    onValueChange={(text) => setRestaurantId(text)}  // Corregir aquí
+                >
+                    {restaurants.map((restaurant) => (
+                        <Select.Item key={restaurant.id} label={`${restaurant.id} - ${restaurant.name}`} value={restaurant.id} />
+                    ))}
+                </Select>
 
 
-            <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-                <Text>Seleccionar Archivo</Text>
-            </Button>
+                <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+                    <Text>Seleccionar Archivo</Text>
+                </Button>
 
-            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
+                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-            <Button onPress={handleUpdate} full title="Actualizar Administrador">
-                <Text>Actualizar Administrador</Text>
-            </Button>
+                <Button onPress={handleUpdate} full title="Actualizar Administrador">
+                    <Text>Actualizar Administrador</Text>
+                </Button>
+            </Container>
         </ScrollView>
     );
 };

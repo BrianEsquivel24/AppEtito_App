@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -79,29 +79,32 @@ const UpdateCategory = ({ route, navigation }) => {
 
   return (
     <ScrollView>
-      <Text>Nombre:</Text>
-      <Input
-        value={name}
-        onChangeText={(text) => setName(text)}
-        placeholder="Ingrese el nombre"
-      />
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>UPDATE CATEGORY</Heading>
+        <Text>Nombre:</Text>
+        <Input
+          value={name}
+          onChangeText={(text) => setName(text)}
+          placeholder="Ingrese el nombre"
+        />
 
-      <Text>Descripción:</Text>
-      <Input
-        value={description}
-        onChangeText={(text) => setDescription(text)}
-        placeholder="Ingrese la Descripcion"
-      />
+        <Text>Descripción:</Text>
+        <Input
+          value={description}
+          onChangeText={(text) => setDescription(text)}
+          placeholder="Ingrese la Descripcion"
+        />
 
-      <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-        <Text>Seleccionar Archivo</Text>
-      </Button>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+          <Text>Seleccionar Archivo</Text>
+        </Button>
 
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada"/>}
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-      <Button onPress={handleUpdate} full title="Actualizar Administrador">
-        <Text>Actualizar Categoria</Text>
-      </Button>
+        <Button onPress={handleUpdate} full title="Actualizar Administrador">
+          <Text>Actualizar Categoria</Text>
+        </Button>
+      </Container>
     </ScrollView>
   );
 };

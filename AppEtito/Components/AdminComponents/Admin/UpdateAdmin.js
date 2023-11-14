@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -85,51 +85,54 @@ const UpdateAdmin = ({ route, navigation }) => {
 
   return (
     <ScrollView>
-      <Text>Nombre:</Text>
-      <Input
-        value={nombre}
-        onChangeText={(text) => setNombre(text)}
-        placeholder="Ingrese el nombre"
-      />
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>UPDATE ADMIN</Heading>
+        <Text>Nombre:</Text>
+        <Input
+          value={nombre}
+          onChangeText={(text) => setNombre(text)}
+          placeholder="Ingrese el nombre"
+        />
 
-      <Text>Dirección:</Text>
-      <Input
-        value={address}
-        onChangeText={(text) => setAddress(text)}
-        placeholder="Ingrese la dirección"
-      />
+        <Text>Dirección:</Text>
+        <Input
+          value={address}
+          onChangeText={(text) => setAddress(text)}
+          placeholder="Ingrese la dirección"
+        />
 
-      <Text>Email:</Text>
-      <Input
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        placeholder="Ingrese el email"
-      />
+        <Text>Email:</Text>
+        <Input
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          placeholder="Ingrese el email"
+        />
 
-      <Text>Contraseña:</Text>
-      <Input
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        placeholder="Ingrese la contraseña"
-        secureTextEntry
-      />
+        <Text>Contraseña:</Text>
+        <Input
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          placeholder="Ingrese la contraseña"
+          secureTextEntry
+        />
 
-      <Text>Número de teléfono:</Text>
-      <Input
-        value={phone_number}
-        onChangeText={(text) => setPhoneNumber(text)}
-        placeholder="Ingrese el número de teléfono"
-      />
+        <Text>Número de teléfono:</Text>
+        <Input
+          value={phone_number}
+          onChangeText={(text) => setPhoneNumber(text)}
+          placeholder="Ingrese el número de teléfono"
+        />
 
-      <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-        <Text>Seleccionar Archivo</Text>
-      </Button>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+          <Text>Seleccionar Archivo</Text>
+        </Button>
 
-      {photo && <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada"/>}
+        {photo && <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-      <Button onPress={handleUpdate} full title="Actualizar Administrador">
-        <Text>Actualizar Administrador</Text>
-      </Button>
+        <Button onPress={handleUpdate} full title="Actualizar Administrador">
+          <Text>Actualizar Administrador</Text>
+        </Button>
+      </Container>
     </ScrollView>
   );
 };

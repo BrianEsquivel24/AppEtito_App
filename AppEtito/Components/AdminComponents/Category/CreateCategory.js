@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Image } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -40,21 +40,21 @@ const AgregarCategory = ({ navigation }) => {
       const formData = new FormData();
       formData.append('name', name);
       formData.append('description', description);
-  
+
       if (image) {
         const uriParts = (image || '').split('.');  // Verifica si photo está definido
         const fileType = uriParts[uriParts.length - 1];
-  
+
         // Generar un nombre único para el archivo basado en el sello de tiempo
         const fileName = `photo_${Date.now()}.${fileType}`;
-  
+
         formData.append('image', {
           uri: image,
           name: fileName,
           type: `image/${fileType}`,
         });
       }
-  
+
       const response = await axios.post(
         'http://192.168.1.73:8000/api/categories/',
         formData,
@@ -64,7 +64,7 @@ const AgregarCategory = ({ navigation }) => {
           },
         }
       );
-  
+
       console.log('Categoria agregada exitosamente:', response.data);
       navigation.navigate('CategoryScreen');
     } catch (error) {
@@ -79,29 +79,32 @@ const AgregarCategory = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Text>Nombre:</Text>
-      <Input
-        value={name}
-        onChangeText={(text) => setName(text)}
-        placeholder="Ingrese el nombre"
-      />
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>CREATE CARTEGORY</Heading>
+        <Text>Nombre:</Text>
+        <Input
+          value={name}
+          onChangeText={(text) => setName(text)}
+          placeholder="Ingrese el nombre"
+        />
 
-      <Text>Descripción:</Text>
-      <Input
-        value={description}
-        onChangeText={(text) => setDescription(text)}
-        placeholder="Ingrese la descripción"
-      />
+        <Text>Descripción:</Text>
+        <Input
+          value={description}
+          onChangeText={(text) => setDescription(text)}
+          placeholder="Ingrese la descripción"
+        />
 
-      <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-        <Text>Seleccionar Archivo</Text>
-      </Button>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
+          <Text>Seleccionar Archivo</Text>
+        </Button>
 
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada"/>}
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-      <Button onPress={handleAdd} full title="Agregar Categoria">
-        <Text>Agregar Categoria</Text>
-      </Button>
+        <Button onPress={handleAdd} full title="Agregar Categoria">
+          <Text>Agregar Categoria</Text>
+        </Button>
+      </Container>
     </ScrollView>
   );
 };

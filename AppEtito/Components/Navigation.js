@@ -61,9 +61,9 @@ const StackPaymentCrud = createStackNavigator();
 export const AdminCrud = () => {
     return (
         <StackAdminCrud.Navigator>
-            <StackAdminCrud.Screen name='AdminScreen' component={AdminScreen} />
-            <StackAdminCrud.Screen name='AgregarAdmin' component={AgregarAdmin} />
-            <StackAdminCrud.Screen name='UpdateAdmin' component={UpdateAdmin}/>
+            <StackAdminCrud.Screen name='AdminScreen' component={AdminScreen} options={{ headerShown: false }}/>
+            <StackAdminCrud.Screen name='AgregarAdmin' component={AgregarAdmin} options={{ headerShown: false }}/>
+            <StackAdminCrud.Screen name='UpdateAdmin' component={UpdateAdmin} options={{ headerShown: false }}/>
         </StackAdminCrud.Navigator>
     )
 }
@@ -71,9 +71,9 @@ export const AdminCrud = () => {
 export const CategoryCrud = () => {
     return (
         <StackCategoryCrud.Navigator>
-            <StackCategoryCrud.Screen name='CategoryScreen' component={CategoryScreen} />
-            <StackCategoryCrud.Screen name='AgregarCategory' component={CreateCategory} />
-            <StackCategoryCrud.Screen name='UpdateCategory' component={UpdateCategory}/>
+            <StackCategoryCrud.Screen name='CategoryScreen' component={CategoryScreen} options={{ headerShown: false }}/>
+            <StackCategoryCrud.Screen name='AgregarCategory' component={CreateCategory} options={{ headerShown: false }}/>
+            <StackCategoryCrud.Screen name='UpdateCategory' component={UpdateCategory} options={{ headerShown: false }}/>
         </StackCategoryCrud.Navigator>
     )
 }
@@ -81,9 +81,9 @@ export const CategoryCrud = () => {
 export const RestaurantCrud = () => {
     return (
         <StackRestaurantCrud.Navigator>
-            <StackRestaurantCrud.Screen name='RestaurantScreen' component={RestaurantScreen} />
-            <StackRestaurantCrud.Screen name='AgregarRestaurant' component={AgregarRestaurant} />
-            <StackRestaurantCrud.Screen name='UpdateRestaurant' component={UpdateRestaurant}/>
+            <StackRestaurantCrud.Screen name='RestaurantScreen' component={RestaurantScreen} options={{ headerShown: false }}/>
+            <StackRestaurantCrud.Screen name='AgregarRestaurant' component={AgregarRestaurant} options={{ headerShown: false }}/>
+            <StackRestaurantCrud.Screen name='UpdateRestaurant' component={UpdateRestaurant} options={{ headerShown: false }}/>
         </StackRestaurantCrud.Navigator>
     )
 }
@@ -91,9 +91,9 @@ export const RestaurantCrud = () => {
 export const FoodCrud = () => {
     return (
         <StackFoodCrud.Navigator>
-            <StackFoodCrud.Screen name='FoodScreen' component={FoodScreen} />
-            <StackFoodCrud.Screen name='AgregarFood' component={AgregarFood} />
-            <StackFoodCrud.Screen name='UpdateFood' component={UpdateFood}/>
+            <StackFoodCrud.Screen name='FoodScreen' component={FoodScreen} options={{ headerShown: false }}/>
+            <StackFoodCrud.Screen name='AgregarFood' component={AgregarFood} options={{ headerShown: false }}/>
+            <StackFoodCrud.Screen name='UpdateFood' component={UpdateFood} options={{ headerShown: false }}/>
         </StackFoodCrud.Navigator>
     )
 }
@@ -101,9 +101,9 @@ export const FoodCrud = () => {
 export const UserCrud = () => {
     return (
         <StackUserCrud.Navigator>
-            <StackUserCrud.Screen name='UserScreen' component={UserScreen} />
-            <StackUserCrud.Screen name='AgregarUser' component={AgregarUser} />
-            <StackUserCrud.Screen name='UpdateUser' component={UpdateUser}/>
+            <StackUserCrud.Screen name='UserScreen' component={UserScreen} options={{ headerShown: false }}/>
+            <StackUserCrud.Screen name='AgregarUser' component={AgregarUser} options={{ headerShown: false }}/>
+            <StackUserCrud.Screen name='UpdateUser' component={UpdateUser} options={{ headerShown: false }}/>
         </StackUserCrud.Navigator>
     )
 }
@@ -111,9 +111,9 @@ export const UserCrud = () => {
 export const LocationCrud = () => {
     return (
         <StackLocationCrud.Navigator>
-            <StackLocationCrud.Screen name='LocationScreen' component={LocationScreen} />
-            <StackLocationCrud.Screen name='AgregarLocation' component={AgregarLocation} />
-            <StackLocationCrud.Screen name='UpdateLocation' component={UpdateLocation}/>
+            <StackLocationCrud.Screen name='LocationScreen' component={LocationScreen} options={{ headerShown: false }}/>
+            <StackLocationCrud.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }}/>
+            <StackLocationCrud.Screen name='UpdateLocation' component={UpdateLocation} options={{ headerShown: false }}/>
         </StackLocationCrud.Navigator>
     )
 }
@@ -121,9 +121,9 @@ export const LocationCrud = () => {
 export const PaymentMethodCrud = () => {
     return (
         <StackPaymentCrud.Navigator>
-            <StackPaymentCrud.Screen name='PaymentMethodScreen' component={PaymentMethodScreen} />
-            <StackPaymentCrud.Screen name='AgregarPaymentMethod' component={AgregarPaymentMethod} />
-            <StackPaymentCrud.Screen name='UpdatePaymentMethod' component={UpdatePaymentMethod}/>
+            <StackPaymentCrud.Screen name='PaymentMethodScreen' component={PaymentMethodScreen} options={{ headerShown: false }}/>
+            <StackPaymentCrud.Screen name='AgregarPaymentMethod' component={AgregarPaymentMethod} options={{ headerShown: false }}/>
+            <StackPaymentCrud.Screen name='UpdatePaymentMethod' component={UpdatePaymentMethod} options={{ headerShown: false }}/>
         </StackPaymentCrud.Navigator>
     )
 }
@@ -131,14 +131,14 @@ export const PaymentMethodCrud = () => {
 export const AdminNav = () => {
     return (
         <StackAdmin.Navigator>
-            <StackAdmin.Screen name='AdminHome' component={AdminHome} />
-            <StackAdmin.Screen name='AdminCrud' component={AdminCrud} />
-            <StackAdmin.Screen name='CategoryCrud' component={CategoryCrud} />
-            <StackAdmin.Screen name='FoodCrud' component={FoodCrud} />
-            <StackAdmin.Screen name='LocationCrud' component={LocationCrud} />
-            <StackAdmin.Screen name='PaymentMethodCrud' component={PaymentMethodCrud} />
-            <StackAdmin.Screen name='RestaurantCrud' component={RestaurantCrud} />
-            <StackAdmin.Screen name='UserCrud' component={UserCrud} />
+            <StackAdmin.Screen name='AdminHome' component={AdminHome} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='AdminCrud' component={AdminCrud} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='CategoryCrud' component={CategoryCrud} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='FoodCrud' component={FoodCrud} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='LocationCrud' component={LocationCrud} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='PaymentMethodCrud' component={PaymentMethodCrud} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='RestaurantCrud' component={RestaurantCrud} options={{ headerShown: false }}/>
+            <StackAdmin.Screen name='UserCrud' component={UserCrud} options={{ headerShown: false }}/>
         </StackAdmin.Navigator>
     )
 }

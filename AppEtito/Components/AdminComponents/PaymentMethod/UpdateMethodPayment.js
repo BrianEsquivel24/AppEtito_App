@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, Input, Button, Select, DateTimePicker } from 'native-base';
+import { ScrollView, Text, Input, Button, Select, DateTimePicker, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -81,43 +81,46 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
 
     return (
         <ScrollView>
-            <Text>Card Number:</Text>
-            <Input
-                value={cardNumber}
-                onChangeText={(text) => setCardNumber(text)}
-                placeholder="Ingrese el número de la tarjeta"
-            />
+            <Container style={{ paddingTop: 40 }} alignItems="center">
+                <Heading>UPDATE PAYMENT METHOD</Heading>
+                <Text>Card Number:</Text>
+                <Input
+                    value={cardNumber}
+                    onChangeText={(text) => setCardNumber(text)}
+                    placeholder="Ingrese el número de la tarjeta"
+                />
 
-            <Text>Expired Date:</Text>
-            <Input
-                value={expiredDate}
-                onChangeText={(text) => setExpiredDate(text)}
-                placeholder="Ingrese la fecha asi yyyy/mm/dd"
-            />
+                <Text>Expired Date:</Text>
+                <Input
+                    value={expiredDate}
+                    onChangeText={(text) => setExpiredDate(text)}
+                    placeholder="Ingrese la fecha asi yyyy/mm/dd"
+                />
 
-            <Text>Security Code:</Text>
-            <Input
-                value={securityCode}
-                onChangeText={(text) => setSecurityCode(text)}
-                placeholder="Ingrese el código de seguridad"
-            />
+                <Text>Security Code:</Text>
+                <Input
+                    value={securityCode}
+                    onChangeText={(text) => setSecurityCode(text)}
+                    placeholder="Ingrese el código de seguridad"
+                />
 
-            <Text>Users:</Text>
-            <Select
-                selectedValue={userId}
-                minWidth="200"
-                accessibilityLabel="Selecciona un usuario"
-                placeholder="Selecciona un usuario"
-                onValueChange={(text) => setUserId(text)}
-            >
-                {users.map((user) => (
-                    <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
-                ))}
-            </Select>
+                <Text>Users:</Text>
+                <Select
+                    selectedValue={userId}
+                    minWidth="200"
+                    accessibilityLabel="Selecciona un usuario"
+                    placeholder="Selecciona un usuario"
+                    onValueChange={(text) => setUserId(text)}
+                >
+                    {users.map((user) => (
+                        <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
+                    ))}
+                </Select>
 
-            <Button onPress={handleUpdate} full title="Actualizar Payment Method">
-                <Text>Actualizar Payment Method</Text>
-            </Button>
+                <Button onPress={handleUpdate} full title="Actualizar Payment Method">
+                    <Text>Actualizar Payment Method</Text>
+                </Button>
+            </Container>
         </ScrollView>
     );
 };

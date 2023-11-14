@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Select } from 'native-base';
+import { View, Text, Button, Input, ScrollView, Select, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -79,43 +79,46 @@ const AgregarPaymentMethod = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <Text>Card Number:</Text>
-            <Input
-                value={cardNumber}
-                onChangeText={(text) => setCardNumber(text)}
-                placeholder="Ingrese la dirección"
-            />
+            <Container style={{ paddingTop: 40 }} alignItems="center">
+                <Heading>Create Method Payment</Heading>
+                <Text>Card Number:</Text>
+                <Input
+                    value={cardNumber}
+                    onChangeText={(text) => setCardNumber(text)}
+                    placeholder="Ingrese la dirección"
+                />
 
-            <Text>Expired Date:</Text>
-            <Input
-                value={expiredDate}
-                onChangeText={(text) => setExpiredDate(text)}
-                placeholder="Ingrese la fecha asi yyyy/mm/dd"
-            />
+                <Text>Expired Date:</Text>
+                <Input
+                    value={expiredDate}
+                    onChangeText={(text) => setExpiredDate(text)}
+                    placeholder="Ingrese la fecha asi yyyy/mm/dd"
+                />
 
-            <Text>Security Code:</Text>
-            <Input
-                value={securityCode}
-                onChangeText={(text) => setSecurityCode(text)}
-                placeholder="Ingrese la descripción"
-            />
+                <Text>Security Code:</Text>
+                <Input
+                    value={securityCode}
+                    onChangeText={(text) => setSecurityCode(text)}
+                    placeholder="Ingrese la descripción"
+                />
 
-            <Text>User:</Text>
-            <Select
-                selectedValue={userId}
-                minWidth="200"
-                accessibilityLabel="Selecciona una categoría"
-                placeholder="Selecciona una categoría"
-                onValueChange={(text) => setUserId(text)}
-            >
-                {users.map((user) => (
-                    <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
-                ))}
-            </Select>
+                <Text>User:</Text>
+                <Select
+                    selectedValue={userId}
+                    minWidth="200"
+                    accessibilityLabel="Selecciona una categoría"
+                    placeholder="Selecciona una categoría"
+                    onValueChange={(text) => setUserId(text)}
+                >
+                    {users.map((user) => (
+                        <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
+                    ))}
+                </Select>
 
-            <Button onPress={handleAdd} full title="Agregar Administrador">
-                <Text>Agregar Card</Text>
-            </Button>
+                <Button onPress={handleAdd} full title="Agregar Administrador">
+                    <Text>Agregar Card</Text>
+                </Button>
+            </Container>
         </ScrollView>
     );
 };
