@@ -22,10 +22,10 @@ const AdminHome = ({ navigation }) => {
           Admins</Button>
           
         <Button  size="lg" alignItems="center"
-            onPress={() => navigation.navigate('CategoryCrud')}
+            onPress={() => navigation.navigate('UserCrud')}
             bg="success.600"
             mb={3}
-            width="108%" // Ajusta el ancho al 100%
+            width="108%" 
             rounded="full" 
             startIcon={<Icon as={Ionicons} name="people" size={4} />}
             >Users</Button>
@@ -33,38 +33,38 @@ const AdminHome = ({ navigation }) => {
             onPress={() => navigation.navigate('FoodCrud')}
             bg="success.600"
             mb={3}
-            width="108%" // Ajusta el ancho al 100%
+            width="108%" 
             rounded="full" 
             alignItems="center"
             startIcon={<Icon as={Ionicons} name="pizza" size={4} />}
             >Foods</Button>
         <Button  size="lg"
-            onPress={() => navigation.navigate('AdminCrud')}
+            onPress={() => navigation.navigate('LocationCrud')}
             bg="success.600"
             mb={3}
-            width="100%" // Ajusta el ancho al 100%
+            width="100%" 
             rounded="full" 
             startIcon={<Icon as={Ionicons} name="navigate" size={4} />}>Locations</Button>
         <Button  size="lg"
             onPress={() => navigation.navigate('RestaurantCrud')}
             bg="success.600"
             mb={3}
-            width="100%" // Ajusta el ancho al 100%
+            width="100%" 
             rounded="full" 
             startIcon={<Icon as={Ionicons} name="beer" size={4} />}>Restaurants</Button>
         <Button  size="lg"
             onPress={() => navigation.navigate('CategoryCrud')}
             bg="success.600"
             mb={3}
-            width="100%" // Ajusta el ancho al 100%
+            width="100%" 
             rounded="full" 
             startIcon={<Icon as={Ionicons} name="bookmarks" size={4} />}
             >Categories</Button>
         <Button  size="lg"
-            onPress={() => navigation.navigate('AdminCrud')}
+            onPress={() => navigation.navigate('PaymentMethodCrud')}
             bg="success.600"
             mb={2}
-            width="90%" // Ajusta el ancho al 100%
+            width="90%" 
             rounded="full"
             justifyContent="center" 
             startIcon={<Icon as={Ionicons} name="cart" size={4} />}>Payment Methods</Button>

@@ -53,7 +53,7 @@ const RestaurantScreen = () => {
       <Container>
         <Center>
           <Button onPress={agregarRestaurant} full>
-            <Text>Agregar Producto</Text>
+            <Text>Agregar Restaurant</Text>
           </Button>
 
           {data.map((item) => (

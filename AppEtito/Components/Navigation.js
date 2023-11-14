@@ -19,35 +19,44 @@ import FoodScreen from './AdminComponents/Food/FoodScreen'
 import AgregarFood from './AdminComponents/Food/CreateFood';
 import UpdateFood from './AdminComponents/Food/UpdateFood';
 
-
+//components location
 import LocationScreen from './AdminComponents/Location/LocationScreen'
+import AgregarLocation from './AdminComponents/Location/CreateLocation';
+import UpdateLocation from './AdminComponents/Location/UpdateLocation';
+
+//components payment
 import PaymentMethodScreen from './AdminComponents/PaymentMethod/PaymentMethodScreen'
+import AgregarPaymentMethod from './AdminComponents/PaymentMethod/CreateMethodPayment';
+import UpdatePaymentMethod from './AdminComponents/PaymentMethod/UpdateMethodPayment';
 
 //componets Restaurant
 import RestaurantScreen from './AdminComponents/Restaurant/RestaurantScreen'
 import AgregarRestaurant from './AdminComponents/Restaurant/CreateRestaurant';
 import UpdateRestaurant from './AdminComponents/Restaurant/UpdateRestaurant';
 
+//components User
 import UserScreen from './AdminComponents/User/UserScreen'
-
-
+import AgregarUser from './AdminComponents/User/CreateUser';
+import UpdateUser from './AdminComponents/User/UpdateUser';
 
 import Login from './Login';
 import Example from './Home';
 import AdminHome from './AdminHome';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+const Bottom = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
+//Stacks para la part de admin
 const StackAdmin = createStackNavigator();
-
 const StackAdminCrud = createStackNavigator();
-
 const StackCategoryCrud = createStackNavigator();
-
 const StackRestaurantCrud = createStackNavigator();
-
 const StackFoodCrud = createStackNavigator();
+const StackUserCrud = createStackNavigator();
+const StackLocationCrud = createStackNavigator();
+const StackPaymentCrud = createStackNavigator();
 
 export const AdminCrud = () => {
     return (
@@ -89,6 +98,35 @@ export const FoodCrud = () => {
     )
 }
 
+export const UserCrud = () => {
+    return (
+        <StackUserCrud.Navigator>
+            <StackUserCrud.Screen name='UserScreen' component={UserScreen} />
+            <StackUserCrud.Screen name='AgregarUser' component={AgregarUser} />
+            <StackUserCrud.Screen name='UpdateUser' component={UpdateUser}/>
+        </StackUserCrud.Navigator>
+    )
+}
+
+export const LocationCrud = () => {
+    return (
+        <StackLocationCrud.Navigator>
+            <StackLocationCrud.Screen name='LocationScreen' component={LocationScreen} />
+            <StackLocationCrud.Screen name='AgregarLocation' component={AgregarLocation} />
+            <StackLocationCrud.Screen name='UpdateLocation' component={UpdateLocation}/>
+        </StackLocationCrud.Navigator>
+    )
+}
+
+export const PaymentMethodCrud = () => {
+    return (
+        <StackPaymentCrud.Navigator>
+            <StackPaymentCrud.Screen name='PaymentMethodScreen' component={PaymentMethodScreen} />
+            <StackPaymentCrud.Screen name='AgregarPaymentMethod' component={AgregarPaymentMethod} />
+            <StackPaymentCrud.Screen name='UpdatePaymentMethod' component={UpdatePaymentMethod}/>
+        </StackPaymentCrud.Navigator>
+    )
+}
 
 export const AdminNav = () => {
     return (
@@ -97,21 +135,21 @@ export const AdminNav = () => {
             <StackAdmin.Screen name='AdminCrud' component={AdminCrud} />
             <StackAdmin.Screen name='CategoryCrud' component={CategoryCrud} />
             <StackAdmin.Screen name='FoodCrud' component={FoodCrud} />
-            <StackAdmin.Screen name='LocationScreen' component={LocationScreen} />
-            <StackAdmin.Screen name='PaymentMethodScreen' component={PaymentMethodScreen} />
+            <StackAdmin.Screen name='LocationCrud' component={LocationCrud} />
+            <StackAdmin.Screen name='PaymentMethodCrud' component={PaymentMethodCrud} />
             <StackAdmin.Screen name='RestaurantCrud' component={RestaurantCrud} />
-            <StackAdmin.Screen name='UserScreen' component={UserScreen} />
+            <StackAdmin.Screen name='UserCrud' component={UserCrud} />
         </StackAdmin.Navigator>
     )
 }
+
+
 
 const Navigation = () => {
     return (
         <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             <Stack.Screen name="AdminView" component={AdminNav} options={{ headerShown: false }} />
-
-            
             <Stack.Screen name="UserHome" component={Example} options={{ headerShown: false }} />
         </Stack.Navigator>
     );

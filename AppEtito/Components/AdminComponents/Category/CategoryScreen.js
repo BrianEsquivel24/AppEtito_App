@@ -51,7 +51,7 @@ const CategoryScreen = () => {
       <Container>
         <Center>
           <Button onPress={agregarCategory} full>
-            <Text>Agregar Producto</Text>
+            <Text>Agregar Category</Text>
           </Button>
 
           {data.map((item) => (

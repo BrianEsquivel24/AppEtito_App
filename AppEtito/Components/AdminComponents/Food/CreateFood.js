@@ -26,7 +26,7 @@ const AgregarFood = ({ navigation }) => {
   }, []);
 
 
-  // Obtener categorías al cargar el componente
+  // Obtener  al cargar el componente
   const fetchRestaurants = async () => {
     try {
       const response = await axios.get('http://192.168.1.73:8000/api/restaurants/');
