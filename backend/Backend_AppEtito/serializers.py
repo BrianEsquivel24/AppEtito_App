@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Admin
 from .models import User
 from .models import Restaurants,Foods
-from .models import Locations, PaymentMethod, Categories
+from .models import Locations, PaymentMethod, Categories, Orders
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class AdminSerializer(serializers.ModelSerializer):
@@ -39,6 +39,11 @@ class RestaurantsSerializer(serializers.ModelSerializer):
 class FoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Foods
+        fields = '__all__'
+
+class OrdersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Orders
         fields = '__all__'
 
 class UserLoginSerializer(serializers.Serializer):

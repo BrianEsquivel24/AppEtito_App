@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Admin
-from .models import User, Locations,PaymentMethod, Categories, Restaurants, Foods
+from .models import User, Locations,PaymentMethod, Categories, Restaurants, Foods, Orders
 
 @admin.register(Admin)
 class Admin(admin.ModelAdmin):  # Nota: el nombre "AdminAdmin" es solo un ejemplo. Puedes nombrarlo como prefieras.
@@ -30,3 +30,7 @@ class Restaurants(admin.ModelAdmin):
 @admin.register(Foods)
 class Foods(admin.ModelAdmin):  
     list_display = ['id', 'name', 'description', 'price', 'restaurant', 'image']
+
+@admin.register(Orders)
+class Orders(admin.ModelAdmin):  
+    list_display = ['id', 'user', 'location', 'paymentMethod', 'total']

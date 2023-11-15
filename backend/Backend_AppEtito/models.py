@@ -57,6 +57,12 @@ class Foods(models.Model):
     price = models.IntegerField()
     image = models.ImageField(upload_to='photos/', default='path_to_default_image.jpg', null=True, blank=True)
     restaurant = models.ForeignKey(Restaurants, on_delete=models.CASCADE)
+
+class Orders(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.ForeignKey(Locations, on_delete=models.CASCADE)
+    paymentMethod = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE)
+    total = models.IntegerField()
     
 
 

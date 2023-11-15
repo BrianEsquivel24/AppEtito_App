@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
 from django.contrib.auth.hashers import check_password
@@ -11,9 +12,9 @@ from .utils import get_user_role
 
 
 
-from .models import Admin, User, Locations,PaymentMethod, Categories, Restaurants, Foods
+from .models import Admin, User, Locations,PaymentMethod, Categories, Restaurants, Foods, Orders
 from .serializers import AdminSerializer
-from .serializers import UserSerializer
+from .serializers import UserSerializer, OrdersSerializer
 from .serializers import UserLoginSerializer
 from .serializers import LocationsSerializer, PaymentMethodSerializer, CategoriesSerializer, RestaurantsSerializer, FoodsSerializer
 
@@ -137,10 +138,27 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
 
 class FoodsViewSet(viewsets.ModelViewSet):
     queryset = Foods.objects.all()
     serializer_class = FoodsSerializer
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class OrdersViewSet(viewsets.ModelViewSet):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -162,9 +180,9 @@ class Login(APIView):
         if serializer.is_valid():
             nombre = serializer.validated_data.get("nombre")
             password = serializer.validated_data.get("password")
-            role, _ = get_user_role(nombre, password)
+            role, user_id = get_user_role(nombre, password)
             if role:
-                return Response({"role": role}, status=status.HTTP_200_OK)
+                return Response({"role": role, "user_id": user_id}, status=status.HTTP_200_OK)
             else:
                 return Response({"detail": "No active account found with the given credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
