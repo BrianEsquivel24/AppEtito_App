@@ -9,6 +9,8 @@ from rest_framework import status
 from django.contrib.auth.hashers import check_password
 from rest_framework.views import APIView
 from .utils import get_user_role  
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 
 
 
@@ -138,7 +140,21 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+            
+    @action(detail=True, methods=['post'])
+    def imprimir_restaurantes_por_categoria(self, request, pk=None):
+        categoria = get_object_or_404(Categories, id=pk)
+        restaurantes = Restaurants.objects.filter(categories_id=categoria)
+
+        # Formato de salida, puedes adaptarlo según tus necesidades
+        data = {
+            'categoria': categoria.name,
+            'restaurantes': [restaurante.name for restaurante in restaurantes]
+        }
+
+        return Response(data)
+
 
 class FoodsViewSet(viewsets.ModelViewSet):
     queryset = Foods.objects.all()
@@ -186,3 +202,4 @@ class Login(APIView):
             else:
                 return Response({"detail": "No active account found with the given credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
