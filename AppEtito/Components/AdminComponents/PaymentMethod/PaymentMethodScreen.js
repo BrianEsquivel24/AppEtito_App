@@ -10,7 +10,7 @@ const PaymentMethodScreen = () => {
   useEffect(() => {
     const getPayment = async () => {
       try {
-        const response = await axios.get('http://192.168.1.73:8000/api/payment/', {
+        const response = await axios.get('http://192.168.0.9:8000/api/payment/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -41,7 +41,7 @@ const PaymentMethodScreen = () => {
 
   const handleDeletePaymentMethod = async (id) => {
     try {
-      await axios.delete(`http://192.168.1.73:8000/api/payment/${id}/`);
+      await axios.delete(`http://192.168.0.9:8000/api/payment/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting card:', error.message);

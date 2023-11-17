@@ -10,7 +10,7 @@ const AdminScreen = () => {
   useEffect(() => {
     const getAdmins = async () => {
       try {
-        const response = await axios.get('http://192.168.1.73:8000/api/admin/', {
+        const response = await axios.get('http://192.168.0.9:8000/api/admin/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -41,7 +41,7 @@ const AdminScreen = () => {
 
   const handleDeleteAdmin = async (id) => {
     try {
-      await axios.delete(`http://192.168.1.73:8000/api/admin/${id}/`);
+      await axios.delete(`http://192.168.0.9:8000/api/admin/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting admin:', error.message);

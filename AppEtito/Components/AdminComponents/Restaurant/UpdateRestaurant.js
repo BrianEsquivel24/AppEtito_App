@@ -27,7 +27,7 @@ const UpdateRestaurant = ({ route, navigation }) => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('http://192.168.1.73:8000/api/categories/');
+            const response = await axios.get('http://192.168.0.9:8000/api/categories/');
             setCategories(response.data);
         } catch (error) {
             console.error('Error al obtener categorías:', error);
@@ -77,7 +77,7 @@ const UpdateRestaurant = ({ route, navigation }) => {
             }
 
             const response = await axios.put(
-                `http://192.168.1.73:8000/api/restaurants/${restaurant.id}/`,
+                `http://192.168.0.9:8000/api/restaurants/${restaurant.id}/`,
                 formData,
                 {
                     headers: {

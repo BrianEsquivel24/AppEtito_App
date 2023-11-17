@@ -10,7 +10,7 @@ const RestaurantList = ({ route }) => {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const apiUrl = `http://192.168.1.73:8000/api/restaurants/?category=${categoryId}`;
+        const apiUrl = `http://192.168.0.9:8000/api/restaurants/?category=${categoryId}`;
         console.log('API URL:', apiUrl);
 
         const response = await axios.get(apiUrl);

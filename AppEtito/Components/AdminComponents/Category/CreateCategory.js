@@ -56,7 +56,7 @@ const AgregarCategory = ({ navigation }) => {
       }
 
       const response = await axios.post(
-        'http://192.168.1.73:8000/api/categories/',
+        'http://192.168.0.9:8000/api/categories/',
         formData,
         {
           headers: {

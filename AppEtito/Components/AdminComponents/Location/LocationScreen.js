@@ -10,7 +10,7 @@ const LocationScreen = () => {
   useEffect(() => {
     const getLocations = async () => {
       try {
-        const response = await axios.get('http://192.168.1.73:8000/api/locations/', {
+        const response = await axios.get('http://192.168.0.9:8000/api/locations/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -41,7 +41,7 @@ const LocationScreen = () => {
 
   const handleDeleteLocation = async (id) => {
     try {
-      await axios.delete(`http://192.168.1.73:8000/api/locations/${id}/`);
+      await axios.delete(`http://192.168.0.9:8000/api/locations/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting location:', error.message);

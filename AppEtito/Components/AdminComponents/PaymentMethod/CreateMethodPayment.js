@@ -24,7 +24,7 @@ const AgregarPaymentMethod = ({ navigation }) => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://192.168.1.73:8000/api/user/');
+            const response = await axios.get('http://192.168.0.9:8000/api/user/');
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener usuarios:', error);
@@ -57,7 +57,7 @@ const AgregarPaymentMethod = ({ navigation }) => {
             formData.append('user', userId);
 
             const response = await axios.post(
-                'http://192.168.1.73:8000/api/payment/',
+                'http://192.168.0.9:8000/api/payment/',
                 formData,
                 {
                     headers: {
