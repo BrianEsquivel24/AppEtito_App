@@ -1,53 +1,50 @@
-import React from 'react';
-import { Box, Center, Heading, Image, Text, VStack, HStack, Badge } from 'native-base';
+import React, { useState, useEffect } from 'react';
+import { ScrollView, Container, Heading, Text, Button, Image, Card } from 'native-base';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Perfil = () => {
+const Profile = ({ navigation }) => {
+  const [user, setUser] = useState({
+    id: '',
+    nombre: '',
+    email: '',
+    password: '',
+    phone_number: '',
+    photo: null,
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        // Obtener el ID del usuario almacenado en AsyncStorage
+        const userId = await AsyncStorage.getItem('id');
+
+        // Hacer la solicitud GET al backend para obtener la información del usuario
+        const response = await axios.get(`http://192.168.1.73:8000/api/user/${userId}/`);
+        
+        // Actualizar el estado del usuario con la respuesta del servidor
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error al obtener la información del usuario:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   return (
-    <Box
-      bg="white"
-      p={4}
-      rounded="lg"
-      shadow={2}
-      width="90%"
-      mx="auto"
-      mt={8}
-    >
-      <Center>
-        <Image
-          source={{ uri: 'https://placekitten.com/200/200' }}
-          alt="Profile Picture"
-          size={16}
-          borderRadius={999}
-          mb={4}
-        />
-        <Heading size="lg">John Doe</Heading>
-        <Text color="gray.500" fontSize="md" textAlign="center">
-          Frontend Developer | Passionate about creating amazing user experiences
-        </Text>
-      </Center>
-
-      <VStack space={4} mt={4}>
-        <HStack justifyContent="space-between">
-          <Text fontWeight="bold">Email:</Text>
-          <Text>john.doe@example.com</Text>
-        </HStack>
-        <HStack justifyContent="space-between">
-          <Text fontWeight="bold">Phone:</Text>
-          <Text>(123) 456-7890</Text>
-        </HStack>
-        <HStack justifyContent="space-between">
-          <Text fontWeight="bold">Location:</Text>
-          <Text>New York, USA</Text>
-        </HStack>
-
-        <HStack space={2}>
-          <Badge>React</Badge>
-          <Badge>JavaScript</Badge>
-          <Badge>UI/UX</Badge>
-        </HStack>
-      </VStack>
-    </Box>
+    <ScrollView>
+      <Container style={{ paddingTop: 40 }} alignItems="center">
+        <Heading>PROFILE</Heading>
+        <Card>
+          <Image source={{ uri: user.photo }} style={{ width: 200, height: 200 }} alt="Foto de perfil" />
+          <Text>Nombre: {user.nombre}</Text>
+          <Text>Email: {user.email}</Text>
+          <Text>Número de teléfono: {user.phone_number}</Text>
+        </Card>
+      </Container>
+    </ScrollView>
   );
 };
 
-export default Perfil;
+export default Profile;

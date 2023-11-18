@@ -142,18 +142,22 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
             
-    @action(detail=True, methods=['post'])
-    def imprimir_restaurantes_por_categoria(self, request, pk=None):
+    @action(detail=True, methods=['get'])  # Cambiado a 'get' en lugar de 'post'
+    def print_restaurants_por_category(self, request, pk=None):
         categoria = get_object_or_404(Categories, id=pk)
         restaurantes = Restaurants.objects.filter(categories_id=categoria)
+        
+        # Serializar los datos utilizando el serializador
+        serializer = RestaurantsSerializer(restaurantes, many=True)
+        data = serializer.data
 
         # Formato de salida, puedes adaptarlo según tus necesidades
-        data = {
+        response_data = {
             'categoria': categoria.name,
-            'restaurantes': [restaurante.name for restaurante in restaurantes]
+            'restaurantes': data
         }
 
-        return Response(data)
+        return Response(response_data)
 
 
 class FoodsViewSet(viewsets.ModelViewSet):
@@ -171,6 +175,23 @@ class FoodsViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    @action(detail=True, methods=['get'])
+    def print_foods_por_restaurants(self, request, pk=None):
+        restaurant = get_object_or_404(Restaurants, id=pk)
+        foods = Foods.objects.filter(restaurant_id=restaurant)
+
+        # Serializar los datos utilizando el serializador
+        serializer = FoodsSerializer(foods, many=True)
+        data = serializer.data
+
+        # Formato de salida, puedes adaptarlo según tus necesidades
+        response_data = {
+            'Restaurant': restaurant.name,
+            'foods': data
+        }
+
+        return Response(response_data)
     
 class OrdersViewSet(viewsets.ModelViewSet):
     queryset = Orders.objects.all()
