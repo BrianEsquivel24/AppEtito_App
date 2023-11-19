@@ -4,13 +4,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 //imports screens de user
-import Profile from './UsersComponents/Profile';
-//imports screens
-import Search from './UsersComponents/Search';
-import RestaurantList from './UsersComponents/RestaurantList';
-import FoodsList from './UsersComponents/FoodsList';
 
-import Cart from './UsersComponents/Cart';
+//screens profile
+import Profile from './UsersComponents/Profile/Profile';
+import AgregarLocationUser from './UsersComponents/Profile/CreateLocationUser';
+import AgregarPaymentMethodUser from './UsersComponents/Profile/CreatePaymentUser';
+
+//imports search
+import Search from './UsersComponents/Search/Search';
+import RestaurantList from './UsersComponents/Search/RestaurantList';
+import FoodsList from './UsersComponents/Search/FoodsList';
+
+//imports cart
+import Cart from './UsersComponents/CartAndPayment/Cart';
+import MyButton from './UsersComponents/CartAndPayment/Checkout';
 
 //imports de home
 import Home from './Home';
@@ -60,13 +67,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const AgregDirec = createStackNavigator();
 const Restaurants = createStackNavigator();
+const ProfileS = createStackNavigator();
+const Carritou = createStackNavigator();
 
 export const HomeBottons = () => {
   return (
     <AgregDirec.Navigator>
       <AgregDirec.Screen name='Home' component={Home} options={{ headerShown: false }} />
-      <AgregDirec.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }} />
-
     </AgregDirec.Navigator>
   )
 }
@@ -78,6 +85,25 @@ export const SearchBottons = () => {
       <Restaurants.Screen name='RestaurantList' component={RestaurantList} options={{ headerShown: false }} />
       <Restaurants.Screen name='FoodsList' component={FoodsList} options={{ headerShown: false }} />
     </Restaurants.Navigator>
+  )
+}
+
+export const ProfileBottons = () => {
+  return (
+    <ProfileS.Navigator>
+      <ProfileS.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
+      <ProfileS.Screen name='AgregarLocationUser' component={AgregarLocationUser} options={{ headerShown: false }} />
+      <ProfileS.Screen name='AgregarPaymentMethodUser' component={AgregarPaymentMethodUser} options={{ headerShown: false }} />
+    </ProfileS.Navigator>
+  )
+}
+
+export const CartBottons = () => {
+  return (
+    <Carritou.Navigator>
+      <Carritou.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
+      <Carritou.Screen name='MyButton' component={MyButton} options={{ headerShown: false }} />
+    </Carritou.Navigator>
   )
 }
 
@@ -117,8 +143,8 @@ export const NavTab = () => {
         }}
       />
       <Tab.Screen
-        name="Cart"
-        component={Cart}
+        name="CartBottons"
+        component={CartBottons}
         options={{
           headerShown: false,
           tabBarLabel: 'Carrito',
@@ -132,8 +158,8 @@ export const NavTab = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileBottons"
+        component={ProfileBottons}
         options={{
           headerShown: false,
           tabBarLabel: 'Perfil',

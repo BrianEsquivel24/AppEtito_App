@@ -1,10 +1,11 @@
 import React from "react";
-import { Center, Container, Heading, NativeBaseProvider, VStack, Button, HStack,Icon, Text} from "native-base";
+import { Center, Container, Heading, NativeBaseProvider, VStack, Button, HStack,Icon, Text, ScrollView} from "native-base";
 import { Ionicons } from '@expo/vector-icons'; // Asegúrate de tener instalado este paquete
 import { View, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const AdminHome = ({ navigation }) => {
   return (
+    <ScrollView>
     <View style={styles.mainContainer}>
     <View style={styles.container}>
     <Text style={styles.title}>AppEtito</Text>
@@ -43,6 +44,10 @@ const AdminHome = ({ navigation }) => {
             onPress={() => navigation.navigate('PaymentMethodCrud')}
             style={styles.button}
             startIcon={<Icon as={Ionicons} name="cart" size={4} />}>Metodos de pago</Button>
+          <Button  
+            onPress={() => navigation.navigate('PaymentMethodCrud')}
+            style={styles.button}
+            startIcon={<Icon as={Ionicons} name="cart" size={4} />}>Ordenes</Button>
         <Button  
             onPress={() => navigation.navigate('Login')}
             style={styles.button}
@@ -50,6 +55,7 @@ const AdminHome = ({ navigation }) => {
 
       </View>
       </View>
+      </ScrollView>
   );
 }
 
