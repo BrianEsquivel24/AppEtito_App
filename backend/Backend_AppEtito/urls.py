@@ -8,8 +8,9 @@ router.register(r'user', UserViewSet)
 router.register(r'locations', LocationsViewSet)
 router.register(r'payment', PaymentMethodViewSet)
 router.register(r'categories', CategoriesViewSet)
-router.register(r'restaurants', RestaurantViewSet, basename='categories_pk')
-router.register(r'foods', FoodsViewSet)
+router.register(r'restaurants', RestaurantViewSet, basename='restaurants')
+router.register(r'foods', FoodsViewSet, basename='foods')
+
 router.register(r'orders', OrdersViewSet)
 
 urlpatterns = [

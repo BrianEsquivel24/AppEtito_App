@@ -5,6 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import Svg, { Defs, Pattern, Use, Image, Path } from "react-native-svg"
+<<<<<<< HEAD
+=======
+import AsyncStorage from '@react-native-async-storage/async-storage';
+>>>>>>> c9b10b673be5cccd1916d482a84053e58577c291
 
 const Login = () => {
   const navigation = useNavigation();
@@ -15,13 +19,14 @@ const Login = () => {
 
   const handleLogin = () => {
     // Peticion al back
-    axios.post('http://192.168.0.9:8000/api/login/', {
+    axios.post('http://192.168.1.73:8000/api/login/', {
       nombre: username,
       password: password,
     })
-      .then(function (response) {
+      .then(async function (response) {
         // Aquí checa si es admin o user
         console.log(response.data.role);
+        console.log(response.data.user_id);
         const userRole = response.data.role;
         if (userRole === 'admin') {
           // Navega a la pantalla de administrador
@@ -29,6 +34,9 @@ const Login = () => {
         } else if (userRole === 'user') {
           // Navega a la pantalla de usuario regular
           navigation.navigate('UserHome');
+          await AsyncStorage.setItem('id', response.data.user_id.toString());
+          console.log("async: ", await AsyncStorage.getItem('id'));
+
         } else {
           // Falta poner un modal o algo que aparezca si no encuentra el usuario
           // ni en admin ni en user
@@ -76,9 +84,9 @@ const Login = () => {
       </Svg>
     )
   }
-  return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
+<<<<<<< HEAD
+=======
+
         <View style={styles.containerSVG}>
           <SvgTop /></View>
 

@@ -2,53 +2,50 @@ import React, { useState, useEffect } from "react";
 import { Container, VStack, Box, Heading, Text, Spinner, ScrollView, Image, Button } from "native-base";
 import axios from "axios";
 
-const RestaurantList = ({ route, navigation }) => {
-  const [restaurants, setRestaurants] = useState({
-    categoria: '',
-    restaurantes: [],
+const FoodsList = ({ route, navigation }) => {
+  const [foodis, setFoods] = useState({
+    restaurant: '',
+    foods: [],
   });
 
   const [loading, setLoading] = useState(true);
-  const categoryId = route.params.categoryId;
+  const restaurantId = route.params.restaurantId;
 
   useEffect(() => {
-    const fetchRestaurants = async () => {
+    const fetchFoods = async () => {
       try {
-        const apiUrl = `http://192.168.1.73:8000/api/restaurants/${categoryId}/print_restaurants_por_category/`;
+        const apiUrl = `http://192.168.1.73:8000/api/foods/${restaurantId}/print_foods_por_restaurants/`;
         console.log('API URL:', apiUrl);
 
         const response = await axios.get(apiUrl);
         console.log('Response Data:', response.data);
-        setRestaurants(response.data);
+        setFoods(response.data);
       } catch (error) {
-        console.error("Error al obtener la lista de restaurantes:", error);
+        console.error("Error al obtener la lista de foods:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchRestaurants();
-  }, [categoryId]);
+    fetchFoods();
+  }, [restaurantId]);
 
-  const verDetalles = (restaurantId) => {
-    // Navegar a la pantalla de detalles del restaurante con el ID del restaurante
-    navigation.navigate('FoodsList', { restaurantId });
-  };
+//funcion de agregar al carro
 
   return (
     <ScrollView>
       <Container alignItems="center">
         <VStack space={4} alignItems="center" mt={4}>
-          <Heading fontSize="xl" fontWeight="bold">Lista de Restaurantes</Heading>
+          <Heading fontSize="xl" fontWeight="bold">Lista de Comidas</Heading>
 
           {loading ? (
             <Spinner />
           ) : (
             <VStack space={4} alignItems="center" mt={2}>
-              {Array.isArray(restaurants.restaurantes) && restaurants.restaurantes.length > 0 ? (
-                restaurants.restaurantes.map((restaurant) => (
+              {Array.isArray(foodis.foods) && foodis.foods.length > 0 ? (
+                foodis.foods.map((foods) => (
                   <Box
-                    key={restaurant.id}
+                    key={foods.id}
                     bg="white"
                     shadow={2}
                     rounded="lg"
@@ -56,16 +53,17 @@ const RestaurantList = ({ route, navigation }) => {
                     overflow="hidden"
                   >
                     <Image
-                    source={{ uri: "http://192.168.1.73:8000"+restaurant.image }}
+                    source={{ uri: "http://192.168.1.73:8000"+foods.image }}
                     alt="Product Image"
                     size={200}
                     resizeMode="contain"
                   />
                     <VStack p={4}>
-                      <Heading size="md">{restaurant.name}</Heading>
-                      <Text>{restaurant.description}</Text>
+                      <Heading size="md">{foods.name}</Heading>
+                      <Text>{foods.description}</Text>
+                      <Text>Precio: {foods.price}</Text>
                     </VStack>
-                    <Button onPress={() => verDetalles(restaurant.id)}>Ver Detalles</Button>
+                    <Button >Agregar al carrito</Button>
                   </Box>
                 ))
               ) : (
@@ -79,4 +77,4 @@ const RestaurantList = ({ route, navigation }) => {
   );
 };
 
-export default RestaurantList;
+export default FoodsList;

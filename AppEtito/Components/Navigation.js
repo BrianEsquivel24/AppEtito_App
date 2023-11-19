@@ -4,10 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 //imports screens de user
-import Perfil from './UsersComponents/Profile';
+import Profile from './UsersComponents/Profile';
 //imports screens
 import Search from './UsersComponents/Search';
 import RestaurantList from './UsersComponents/RestaurantList';
+import FoodsList from './UsersComponents/FoodsList';
 
 import Cart from './UsersComponents/Cart';
 
@@ -61,89 +62,93 @@ const AgregDirec = createStackNavigator();
 const Restaurants = createStackNavigator();
 
 export const HomeBottons = () => {
-    return (
-        <AgregDirec.Navigator>
-            <AgregDirec.Screen name='Home' component={Home} options={{ headerShown: false }}/>
-            <AgregDirec.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }}/>
-            
-        </AgregDirec.Navigator>
-    )
+  return (
+    <AgregDirec.Navigator>
+      <AgregDirec.Screen name='Home' component={Home} options={{ headerShown: false }} />
+      <AgregDirec.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }} />
+
+    </AgregDirec.Navigator>
+  )
 }
 
 export const SearchBottons = () => {
-    return (
-        <Restaurants.Navigator>
-            <Restaurants.Screen name='Search' component={Search} options={{ headerShown: false }}/>
-            <Restaurants.Screen name='RestaurantList' component={RestaurantList} options={{ headerShown: false }}/>
-            
-        </Restaurants.Navigator>
-    )
+  return (
+    <Restaurants.Navigator>
+      <Restaurants.Screen name='Search' component={Search} options={{ headerShown: false }} />
+      <Restaurants.Screen name='RestaurantList' component={RestaurantList} options={{ headerShown: false }} />
+      <Restaurants.Screen name='FoodsList' component={FoodsList} options={{ headerShown: false }} />
+    </Restaurants.Navigator>
+  )
 }
 
 const Tab = createBottomTabNavigator();
 
 export const NavTab = () => {
-    return (
-      <Tab.Navigator>
-        <Tab.Screen
-          name="HomeBottons"
-          component={HomeBottons}
-          options={{
-            tabBarLabel: 'Inicio',
-            tabBarIcon: ({ color, size, focused }) => (
-              <Ionicons
-                name={focused ? 'home' : 'home-outline'}
-                size={size}
-                color={color}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="SearchBottons"
-          component={SearchBottons}
-          options={{
-            tabBarLabel: 'Búsqueda',
-            tabBarIcon: ({ color, size, focused }) => (
-              <Ionicons
-                name={focused ? 'search' : 'search-outline'}
-                size={size}
-                color={color}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Cart"
-          component={Cart}
-          options={{
-            tabBarLabel: 'Carrito',
-            tabBarIcon: ({ color, size, focused }) => (
-              <Ionicons
-                name={focused ? 'cart' : 'cart-outline'}
-                size={size}
-                color={color}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Perfil"
-          component={Perfil}
-          options={{
-            tabBarLabel: 'Perfil',
-            tabBarIcon: ({ color, size, focused }) => (
-              <Ionicons
-                name={focused ? 'person' : 'person-outline'}
-                size={size}
-                color={color}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    );
-  };
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="HomeBottons"
+        component={HomeBottons}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Welcome',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'home' : 'home-outline'}
+              size={size}
+              color={color}
+            />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="SearchBottons"
+        component={SearchBottons}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Búsqueda',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'search' : 'search-outline'}
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Carrito',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'cart' : 'cart-outline'}
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Perfil',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'person' : 'person-outline'}
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 const Stack = createStackNavigator();
 
@@ -158,100 +163,100 @@ const StackLocationCrud = createStackNavigator();
 const StackPaymentCrud = createStackNavigator();
 
 export const AdminCrud = () => {
-    return (
-        <StackAdminCrud.Navigator>
-            <StackAdminCrud.Screen name='AdminScreen' component={AdminScreen} options={{ headerShown: false }}/>
-            <StackAdminCrud.Screen name='AgregarAdmin' component={AgregarAdmin} options={{ headerShown: false }}/>
-            <StackAdminCrud.Screen name='UpdateAdmin' component={UpdateAdmin} options={{ headerShown: false }}/>
-        </StackAdminCrud.Navigator>
-    )
+  return (
+    <StackAdminCrud.Navigator>
+      <StackAdminCrud.Screen name='AdminScreen' component={AdminScreen} options={{ headerShown: false }} />
+      <StackAdminCrud.Screen name='AgregarAdmin' component={AgregarAdmin} options={{ headerShown: false }} />
+      <StackAdminCrud.Screen name='UpdateAdmin' component={UpdateAdmin} options={{ headerShown: false }} />
+    </StackAdminCrud.Navigator>
+  )
 }
 
 export const CategoryCrud = () => {
-    return (
-        <StackCategoryCrud.Navigator>
-            <StackCategoryCrud.Screen name='CategoryScreen' component={CategoryScreen} options={{ headerShown: false }}/>
-            <StackCategoryCrud.Screen name='AgregarCategory' component={CreateCategory} options={{ headerShown: false }}/>
-            <StackCategoryCrud.Screen name='UpdateCategory' component={UpdateCategory} options={{ headerShown: false }}/>
-        </StackCategoryCrud.Navigator>
-    )
+  return (
+    <StackCategoryCrud.Navigator>
+      <StackCategoryCrud.Screen name='CategoryScreen' component={CategoryScreen} options={{ headerShown: false }} />
+      <StackCategoryCrud.Screen name='AgregarCategory' component={CreateCategory} options={{ headerShown: false }} />
+      <StackCategoryCrud.Screen name='UpdateCategory' component={UpdateCategory} options={{ headerShown: false }} />
+    </StackCategoryCrud.Navigator>
+  )
 }
 
 export const RestaurantCrud = () => {
-    return (
-        <StackRestaurantCrud.Navigator>
-            <StackRestaurantCrud.Screen name='RestaurantScreen' component={RestaurantScreen} options={{ headerShown: false }}/>
-            <StackRestaurantCrud.Screen name='AgregarRestaurant' component={AgregarRestaurant} options={{ headerShown: false }}/>
-            <StackRestaurantCrud.Screen name='UpdateRestaurant' component={UpdateRestaurant} options={{ headerShown: false }}/>
-        </StackRestaurantCrud.Navigator>
-    )
+  return (
+    <StackRestaurantCrud.Navigator>
+      <StackRestaurantCrud.Screen name='RestaurantScreen' component={RestaurantScreen} options={{ headerShown: false }} />
+      <StackRestaurantCrud.Screen name='AgregarRestaurant' component={AgregarRestaurant} options={{ headerShown: false }} />
+      <StackRestaurantCrud.Screen name='UpdateRestaurant' component={UpdateRestaurant} options={{ headerShown: false }} />
+    </StackRestaurantCrud.Navigator>
+  )
 }
 
 export const FoodCrud = () => {
-    return (
-        <StackFoodCrud.Navigator>
-            <StackFoodCrud.Screen name='FoodScreen' component={FoodScreen} options={{ headerShown: false }}/>
-            <StackFoodCrud.Screen name='AgregarFood' component={AgregarFood} options={{ headerShown: false }}/>
-            <StackFoodCrud.Screen name='UpdateFood' component={UpdateFood} options={{ headerShown: false }}/>
-        </StackFoodCrud.Navigator>
-    )
+  return (
+    <StackFoodCrud.Navigator>
+      <StackFoodCrud.Screen name='FoodScreen' component={FoodScreen} options={{ headerShown: false }} />
+      <StackFoodCrud.Screen name='AgregarFood' component={AgregarFood} options={{ headerShown: false }} />
+      <StackFoodCrud.Screen name='UpdateFood' component={UpdateFood} options={{ headerShown: false }} />
+    </StackFoodCrud.Navigator>
+  )
 }
 
 export const UserCrud = () => {
-    return (
-        <StackUserCrud.Navigator>
-            <StackUserCrud.Screen name='UserScreen' component={UserScreen} options={{ headerShown: false }}/>
-            <StackUserCrud.Screen name='AgregarUser' component={AgregarUser} options={{ headerShown: false }}/>
-            <StackUserCrud.Screen name='UpdateUser' component={UpdateUser} options={{ headerShown: false }}/>
-        </StackUserCrud.Navigator>
-    )
+  return (
+    <StackUserCrud.Navigator>
+      <StackUserCrud.Screen name='UserScreen' component={UserScreen} options={{ headerShown: false }} />
+      <StackUserCrud.Screen name='AgregarUser' component={AgregarUser} options={{ headerShown: false }} />
+      <StackUserCrud.Screen name='UpdateUser' component={UpdateUser} options={{ headerShown: false }} />
+    </StackUserCrud.Navigator>
+  )
 }
 
 export const LocationCrud = () => {
-    return (
-        <StackLocationCrud.Navigator>
-            <StackLocationCrud.Screen name='LocationScreen' component={LocationScreen} options={{ headerShown: false }}/>
-            <StackLocationCrud.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }}/>
-            <StackLocationCrud.Screen name='UpdateLocation' component={UpdateLocation} options={{ headerShown: false }}/>
-        </StackLocationCrud.Navigator>
-    )
+  return (
+    <StackLocationCrud.Navigator>
+      <StackLocationCrud.Screen name='LocationScreen' component={LocationScreen} options={{ headerShown: false }} />
+      <StackLocationCrud.Screen name='AgregarLocation' component={AgregarLocation} options={{ headerShown: false }} />
+      <StackLocationCrud.Screen name='UpdateLocation' component={UpdateLocation} options={{ headerShown: false }} />
+    </StackLocationCrud.Navigator>
+  )
 }
 
 export const PaymentMethodCrud = () => {
-    return (
-        <StackPaymentCrud.Navigator>
-            <StackPaymentCrud.Screen name='PaymentMethodScreen' component={PaymentMethodScreen} options={{ headerShown: false }}/>
-            <StackPaymentCrud.Screen name='AgregarPaymentMethod' component={AgregarPaymentMethod} options={{ headerShown: false }}/>
-            <StackPaymentCrud.Screen name='UpdatePaymentMethod' component={UpdatePaymentMethod} options={{ headerShown: false }}/>
-        </StackPaymentCrud.Navigator>
-    )
+  return (
+    <StackPaymentCrud.Navigator>
+      <StackPaymentCrud.Screen name='PaymentMethodScreen' component={PaymentMethodScreen} options={{ headerShown: false }} />
+      <StackPaymentCrud.Screen name='AgregarPaymentMethod' component={AgregarPaymentMethod} options={{ headerShown: false }} />
+      <StackPaymentCrud.Screen name='UpdatePaymentMethod' component={UpdatePaymentMethod} options={{ headerShown: false }} />
+    </StackPaymentCrud.Navigator>
+  )
 }
 
 export const AdminNav = () => {
-    return (
-        <StackAdmin.Navigator>
-            <StackAdmin.Screen name='AdminHome' component={AdminHome}  options={{ headerShown: false}}/>
-            <StackAdmin.Screen name='AdminCrud' component={AdminCrud} options={{ headerShown: false }}/>
-            <StackAdmin.Screen name='CategoryCrud' component={CategoryCrud} options={{ headerShown: false }}/>
-            <StackAdmin.Screen name='FoodCrud' component={FoodCrud} options={{ headerShown: false }}/>
-            <StackAdmin.Screen name='LocationCrud' component={LocationCrud} options={{ headerShown: false }}/>
-            <StackAdmin.Screen name='PaymentMethodCrud' component={PaymentMethodCrud} options={{ headerShown: false }}/>
-            <StackAdmin.Screen name='RestaurantCrud' component={RestaurantCrud} options={{ headerShown: false }}/>
-            <StackAdmin.Screen name='UserCrud' component={UserCrud} options={{ headerShown: false }}/>
-        </StackAdmin.Navigator>
-    )
+  return (
+    <StackAdmin.Navigator>
+      <StackAdmin.Screen name='AdminHome' component={AdminHome} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='AdminCrud' component={AdminCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='CategoryCrud' component={CategoryCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='FoodCrud' component={FoodCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='LocationCrud' component={LocationCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='PaymentMethodCrud' component={PaymentMethodCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='RestaurantCrud' component={RestaurantCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='UserCrud' component={UserCrud} options={{ headerShown: false }} />
+    </StackAdmin.Navigator>
+  )
 }
 
 
 
 const Navigation = () => {
-    return (
-        <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-            <Stack.Screen name="AdminView" component={AdminNav} options={{ headerShown: false }} />
-            <Stack.Screen name="UserHome" component={NavTab} options={{ headerShown: false }} />
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="AdminView" component={AdminNav} options={{ headerShown: false }} />
+      <Stack.Screen name="UserHome" component={NavTab} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
 };
 
 export default Navigation
