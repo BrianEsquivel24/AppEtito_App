@@ -4,16 +4,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 //imports screens de user
+
+//screens profile
 import Profile from './UsersComponents/Profile/Profile';
 import AgregarLocationUser from './UsersComponents/Profile/CreateLocationUser';
 import AgregarPaymentMethodUser from './UsersComponents/Profile/CreatePaymentUser';
 
-//imports screens
+//imports search
 import Search from './UsersComponents/Search/Search';
 import RestaurantList from './UsersComponents/Search/RestaurantList';
 import FoodsList from './UsersComponents/Search/FoodsList';
 
+//imports cart
 import Cart from './UsersComponents/CartAndPayment/Cart';
+import MyButton from './UsersComponents/CartAndPayment/Checkout';
 
 //imports de home
 import Home from './Home';
@@ -64,6 +68,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const AgregDirec = createStackNavigator();
 const Restaurants = createStackNavigator();
 const ProfileS = createStackNavigator();
+const Carritou = createStackNavigator();
 
 export const HomeBottons = () => {
   return (
@@ -90,6 +95,15 @@ export const ProfileBottons = () => {
       <ProfileS.Screen name='AgregarLocationUser' component={AgregarLocationUser} options={{ headerShown: false }} />
       <ProfileS.Screen name='AgregarPaymentMethodUser' component={AgregarPaymentMethodUser} options={{ headerShown: false }} />
     </ProfileS.Navigator>
+  )
+}
+
+export const CartBottons = () => {
+  return (
+    <Carritou.Navigator>
+      <Carritou.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
+      <Carritou.Screen name='MyButton' component={MyButton} options={{ headerShown: false }} />
+    </Carritou.Navigator>
   )
 }
 
@@ -129,8 +143,8 @@ export const NavTab = () => {
         }}
       />
       <Tab.Screen
-        name="Cart"
-        component={Cart}
+        name="CartBottons"
+        component={CartBottons}
         options={{
           headerShown: false,
           tabBarLabel: 'Carrito',

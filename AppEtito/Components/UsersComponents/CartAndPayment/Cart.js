@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, VStack, Heading, Text, Image, Box, Button, HStack, ScrollView } from 'native-base';
 import { useCart } from '../CartContext';
 
-const Cart = () => {
+const Cart = ({navigation}) => {
   const { cart, removeFromCart, addQuantity, reduceQuantity, total } = useCart();
 
   const handleRemoveFromCart = (item) => {
@@ -17,6 +17,10 @@ const Cart = () => {
   const handleReduceQuantity = (item) => {
     reduceQuantity(item);
   };
+
+  const goToCheckout = () =>{
+    navigation.navigate('MyButton');
+  }
 
   return (
     <ScrollView>
@@ -68,9 +72,13 @@ const Cart = () => {
             Total: {total.toFixed(2)}
           </Text>
 
+          <Button onPress={goToCheckout} >Pagar</Button>
+
           {/* Mostrar un mensaje si el carrito está vacío */}
           {cart.length === 0 && <Text>El carrito está vacío.</Text>}
         </VStack>
+
+        
       </Container>
     </ScrollView>
   );
