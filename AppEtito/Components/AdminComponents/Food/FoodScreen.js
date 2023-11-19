@@ -57,7 +57,7 @@ const FoodScreen = () => {
           <Heading style={styles.title}>COMIDAS</Heading>
           
             <Button 
-            style={styles.button}onPress={agregarFood} full>
+            style={styles.button} onPress={agregarFood} full>
               <Text style={styles.buttonText}>Agregar Comida</Text>
             </Button>
 

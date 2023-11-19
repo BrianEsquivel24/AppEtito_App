@@ -20,7 +20,7 @@ const Profile = ({ navigation }) => {
         const userId = await AsyncStorage.getItem('id');
 
         // Hacer la solicitud GET al backend para obtener la información del usuario
-        const response = await axios.get(`http://192.168.1.73:8000/api/user/${userId}/`);
+        const response = await axios.get(`http://192.168.0.9:8000/api/user/${userId}/`);
         
         // Actualizar el estado del usuario con la respuesta del servidor
         setUser(response.data);

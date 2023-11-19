@@ -101,6 +101,7 @@ const AgregarLocation = ({ navigation }) => {
                     value={addressNumber}
                     onChangeText={(text) => setAddressNumber(text)}
                     placeholder="Ingrese la location"
+                    style={styles.input}
                 />
 
                 <Text style={styles.label}>Description:</Text>
@@ -108,6 +109,7 @@ const AgregarLocation = ({ navigation }) => {
                     value={description}
                     onChangeText={(text) => setDescription(text)}
                     placeholder="Ingrese la description"
+                    style={styles.input}
                 />
 
                 <Text style={styles.label}>User:</Text>
@@ -116,6 +118,7 @@ const AgregarLocation = ({ navigation }) => {
                     minWidth="200"
                     accessibilityLabel="Selecciona una categoría"
                     placeholder="Selecciona una categoría"
+                    style={styles.input}
                     onValueChange={(text) => setUserId(text)}
                 >
                     {users.map((users) => (
@@ -124,8 +127,8 @@ const AgregarLocation = ({ navigation }) => {
                 </Select>
 
                 </Container>
-                <Button onPress={handleAdd} full title="Agregar Administrador">
-                    <Text>Agregar Location</Text>
+                <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
+                    <Text style={styles.buttonText}>Agregar Location</Text>
                 </Button>
             
         </ScrollView>

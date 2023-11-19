@@ -14,7 +14,7 @@ const FoodsList = ({ route, navigation }) => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const apiUrl = `http://192.168.1.73:8000/api/foods/${restaurantId}/print_foods_por_restaurants/`;
+        const apiUrl = `http://192.168.0.9:8000/api/foods/${restaurantId}/print_foods_por_restaurants/`;
         console.log('API URL:', apiUrl);
 
         const response = await axios.get(apiUrl);
@@ -53,7 +53,7 @@ const FoodsList = ({ route, navigation }) => {
                     overflow="hidden"
                   >
                     <Image
-                    source={{ uri: "http://192.168.1.73:8000"+foods.image }}
+                    source={{ uri: "http://192.168.0.9:8000"+foods.image }}
                     alt="Product Image"
                     size={200}
                     resizeMode="contain"
