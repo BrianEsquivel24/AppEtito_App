@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const AgregarAdmin = ({ navigation }) => {
   const [nombre, setNombre] = useState('');
@@ -84,57 +85,119 @@ const AgregarAdmin = ({ navigation }) => {
 
 
   return (
-    <ScrollView>
-      <Container style={{ paddingTop: 40 }} alignItems="center">
-        <Heading>CREATE ADMIN</Heading>
-        <Text>Nombre:</Text>
+
+    <ScrollView contentContainerStyle={styles.container}>
+     
+        <Heading style={styles.title}> Administrador</Heading>
+        <Container  >
+        <Text style={styles.label}>Nombre:</Text>
         <Input
           value={nombre}
           onChangeText={(text) => setNombre(text)}
           placeholder="Ingrese el nombre"
+          style={styles.input}
         />
 
-        <Text>Dirección:</Text>
+        <Text style={styles.label}>Dirección:</Text>
         <Input
           value={address}
           onChangeText={(text) => setAddress(text)}
           placeholder="Ingrese la dirección"
+          style={styles.input}
         />
 
-        <Text>Email:</Text>
+        <Text style={styles.label}>Email:</Text>
         <Input
           value={email}
           onChangeText={(text) => setEmail(text)}
           placeholder="Ingrese el email"
+          style={styles.input}
         />
 
-        <Text>Contraseña:</Text>
+        <Text style={styles.label}>Contraseña:</Text>
         <Input
           value={password}
           onChangeText={(text) => setPassword(text)}
           placeholder="Ingrese la contraseña"
+          style={styles.input}
           secureTextEntry
         />
 
-        <Text>Número de teléfono:</Text>
+        <Text style={styles.label}>Número de teléfono:</Text>
         <Input
           value={phone_number}
           onChangeText={(text) => setPhoneNumber(text)}
+          style={styles.input}
           placeholder="Ingrese el número de teléfono"
         />
-
-        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-          <Text>Seleccionar Archivo</Text>
+  </Container>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo" style={styles.button}>
+          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
         </Button>
 
-        {photo && <Image source={{ uri: photo }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
+        {photo && <Image source={{ uri: photo }} style={styles.image} alt="Foto seleccionada" />}
 
-        <Button onPress={handleAdd} full title="Agregar Administrador">
-          <Text>Agregar Administrador</Text>
+        <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
+          <Text style={styles.buttonText}>Agregar Administrador</Text>
         </Button>
-      </Container>
+    
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  formContainer: {
+    width: '90%',
+   
+  },
+  title: {
+
+    color: '#344340',
+    fontWeight: 'bold',
+    fontSize: 40,
+    lineHeight: 120,
+    textAlign: 'center',
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+
+    marginBottom: 5,
+    borderColor: '#ccc', // Color del borde
+    borderWidth: 1,
+
+    paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+    paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+    backgroundColor: '#fff', // Color de fondo del input
+
+  },
+  button: {
+    width: '80%',
+    height: 50,
+    borderRadius: 25,
+    padding: 10,
+    marginTop: 25,
+    backgroundColor: '#FF8300',
+   
+    
+  },
+  image: {
+    width: 150,
+    height: 150,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  }
+});
+
 
 export default AgregarAdmin;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const AgregarLocation = ({ navigation }) => {
     const [address, setAddress] = useState('');
@@ -83,31 +84,33 @@ const AgregarLocation = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container  style={{ paddingTop: 40 }} alignItems="center">
-                <Heading>CREATE LOCATION</Heading>
-                <Text>Address:</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+           
+                <Heading style={styles.title}>New Location</Heading>
+                <Container  >
+                <Text style={styles.label}>Address:</Text>
                 <Input
                     value={address}
                     onChangeText={(text) => setAddress(text)}
                     placeholder="Ingrese la direccion"
+                    style={styles.input}
                 />
 
-                <Text>Address Number:</Text>
+                <Text style={styles.label}>Address Number:</Text>
                 <Input
                     value={addressNumber}
                     onChangeText={(text) => setAddressNumber(text)}
                     placeholder="Ingrese la location"
                 />
 
-                <Text>Description:</Text>
+                <Text style={styles.label}>Description:</Text>
                 <Input
                     value={description}
                     onChangeText={(text) => setDescription(text)}
                     placeholder="Ingrese la description"
                 />
 
-                <Text>User:</Text>
+                <Text style={styles.label}>User:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
@@ -120,13 +123,68 @@ const AgregarLocation = ({ navigation }) => {
                     ))}
                 </Select>
 
-
+                </Container>
                 <Button onPress={handleAdd} full title="Agregar Administrador">
                     <Text>Agregar Location</Text>
                 </Button>
-            </Container>
+            
         </ScrollView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    formContainer: {
+      width: '90%',
+     
+    },
+    title: {
+  
+      color: '#344340',
+      fontWeight: 'bold',
+      fontSize: 40,
+      lineHeight: 120,
+      textAlign: 'center',
+    },
+    label: {
+      fontSize: 16,
+      marginBottom: 5,
+    },
+    input: {
+  
+      marginBottom: 5,
+      borderColor: '#ccc', // Color del borde
+      borderWidth: 1,
+  
+      paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+      paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+      backgroundColor: '#fff', // Color de fondo del input
+  
+    },
+    button: {
+      width: '80%',
+      height: 50,
+      borderRadius: 25,
+      padding: 10,
+      marginTop: 25,
+      backgroundColor: '#FF8300',
+     
+      
+    },
+    image: {
+      width: 150,
+      height: 150,
+      marginTop: 20,
+    },
+    buttonText: {
+      color: '#ffffff',
+      fontWeight: 'bold',
+    }
+  });
+  
 
 export default AgregarLocation;

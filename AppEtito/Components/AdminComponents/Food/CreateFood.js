@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet } from 'react-native';
 
 const AgregarFood = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -96,36 +97,42 @@ const AgregarFood = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
-      <Container style={{ paddingTop: 40 }} alignItems="center">
-        <Heading>CREATE FOOD</Heading>
-        <Text>Nombre:</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+     
+      
+        <Heading style={styles.title}>Comida</Heading>
+        <Container>
+        <Text style={styles.label}>Nombre:</Text>
         <Input
           value={name}
           onChangeText={(text) => setName(text)}
           placeholder="Ingrese el nombre"
+          style={styles.input}
         />
 
-        <Text>Description:</Text>
+        <Text style={styles.label}>Descripcion:</Text>
         <Input
           value={description}
           onChangeText={(text) => setDescription(text)}
-          placeholder="Ingrese la description"
+          placeholder="Ingrese la descripción"
+          style={styles.input}
         />
 
-        <Text>Price:</Text>
+        <Text style={styles.label}>Precio:</Text>
         <Input
           value={price}
           onChangeText={(text) => setPrice(text)}
           placeholder="Ingrese el precio"
+          style={styles.input}
         />
 
-        <Text>Restaurant:</Text>
+        <Text style={styles.label}>Restaurante:</Text>
         <Select
           selectedValue={restaurantId.toString()} // Convierte a cadena
-          minWidth="200"
+          minWidth="310"
           accessibilityLabel="Selecciona un restaurante"
           placeholder="Selecciona un restaurante"
+          style={styles.input}
           onValueChange={(value) => setRestaurantId(parseInt(value, 10))} // Convierte a número
         >
           {restaurants.map((food) => (
@@ -133,18 +140,75 @@ const AgregarFood = ({ navigation }) => {
           ))}
         </Select>
 
-        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-          <Text>Seleccionar Archivo</Text>
+        </Container>
+        <Button onPress={handlePickDocument} full title="Seleccionar Archivo" style={styles.button}>
+          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
+        </Button >
+
+        {image && <Image source={{ uri: image }} style={styles.image} alt="Foto seleccionada" />}
+
+        <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
+          <Text style={styles.buttonText}>Agregar Restaurante</Text>
         </Button>
 
-        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
-
-        <Button onPress={handleAdd} full title="Agregar Administrador">
-          <Text>Agregar Restaurant</Text>
-        </Button>
-      </Container>
+       
+      
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  formContainer: {
+    width: '90%',
+   
+  },
+  title: {
+
+    color: '#344340',
+    fontWeight: 'bold',
+    fontSize: 40,
+    lineHeight: 120,
+    textAlign: 'center',
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+
+    marginBottom: 5,
+    borderColor: '#ccc', // Color del borde
+    borderWidth: 1,
+
+    paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+    paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+    backgroundColor: '#fff', // Color de fondo del input
+
+  },
+  button: {
+    width: '80%',
+    height: 50,
+    borderRadius: 25,
+    padding: 10,
+    marginTop: 25,
+    backgroundColor: '#FF8300',
+   
+    
+  },
+  image: {
+    width: 150,
+    height: 150,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  }
+});
 
 export default AgregarFood;
