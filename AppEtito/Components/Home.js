@@ -78,21 +78,9 @@ const Home = () => {
 
   }, []);
 
-  const navigateToAgregarLocation = () => {
-    navigation.navigate('AgregarLocation', { userId });
-  };
-
   return (
     <ScrollView>
       <Container alignItems="justify" p={4} flex="1">
-        <Box bg="gray.200" p={4} borderRadius={10} mb={4}>
-          <HStack space={4} alignItems="center">
-            <Ionicons name="location" size={24} color="black" />
-            <Button onPress={navigateToAgregarLocation}>
-              <Text fontWeight="bold">Agregar Dirección</Text>
-            </Button>
-          </HStack>
-        </Box>
         <VStack space={4} alignItems="center">
           <Text textAlign="justify" fontWeight="bold" fontSize="xl">
             ¡Bienvenido a Nuestra Aplicación de Entrega de Comida!

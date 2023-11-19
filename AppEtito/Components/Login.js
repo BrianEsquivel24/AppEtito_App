@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import Svg, { Defs, Pattern, Use, Image, Path } from "react-native-svg"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
   const navigation = useNavigation();
