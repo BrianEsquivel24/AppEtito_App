@@ -80,9 +80,9 @@ const Login = () => {
       </Svg>
     )
   }
-<<<<<<< HEAD
-=======
-
+  return (
+    <View style={styles.mainContainer}>
+      <View style={styles.container}>
         <View style={styles.containerSVG}>
           <SvgTop /></View>
 
