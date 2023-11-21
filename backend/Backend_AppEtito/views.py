@@ -21,7 +21,6 @@ from .serializers import UserLoginSerializer
 from .serializers import LocationsSerializer, PaymentMethodSerializer, CategoriesSerializer, RestaurantsSerializer, FoodsSerializer
 
 
-
 class AdminViewSet(viewsets.ModelViewSet):
     queryset = Admin.objects.all()
     serializer_class = AdminSerializer
@@ -73,6 +72,23 @@ class LocationsViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['get'])
+    def print_locations_per_user(self, request, pk=None):
+        user = get_object_or_404(User, id=pk)
+        location = Locations.objects.filter(user_id=user)
+        
+        # Serializar los datos utilizando el serializador
+        serializer = LocationsSerializer(location, many=True)
+        data = serializer.data
+
+        # Formato de salida, puedes adaptarlo según tus necesidades
+        response_data = {
+            'locations': data
+        }
+
+        return Response(response_data)
+
     
 
 class PaymentMethodViewSet(viewsets.ModelViewSet):
@@ -90,6 +106,22 @@ class PaymentMethodViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['get'])
+    def print_card_per_user(self, request, pk=None):
+        user = get_object_or_404(User, id=pk)
+        card = PaymentMethod.objects.filter(user_id=user)
+        
+        # Serializar los datos utilizando el serializador
+        serializer = PaymentMethodSerializer(card, many=True)
+        data = serializer.data
+
+        # Formato de salida, puedes adaptarlo según tus necesidades
+        response_data = {
+            'cards': data
+        }
+
+        return Response(response_data)
 
 class CategoriesViewSet(viewsets.ModelViewSet):
     queryset = Categories.objects.all()
@@ -142,7 +174,7 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
             
-    @action(detail=True, methods=['get'])  # Cambiado a 'get' en lugar de 'post'
+    @action(detail=True, methods=['get'])
     def print_restaurants_por_category(self, request, pk=None):
         categoria = get_object_or_404(Categories, id=pk)
         restaurantes = Restaurants.objects.filter(categories_id=categoria)

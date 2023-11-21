@@ -45,7 +45,7 @@ const AdminHome = ({ navigation }) => {
             style={styles.button}
             startIcon={<Icon as={Ionicons} name="cart" size={4} />}>Metodos de pago</Button>
           <Button  
-            onPress={() => navigation.navigate('PaymentMethodCrud')}
+            onPress={() => navigation.navigate('OrdersScreen')}
             style={styles.button}
             startIcon={<Icon as={Ionicons} name="cart" size={4} />}>Ordenes</Button>
         <Button  

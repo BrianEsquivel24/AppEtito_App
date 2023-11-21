@@ -87,9 +87,9 @@ const AgregarAdmin = ({ navigation }) => {
   return (
 
     <ScrollView contentContainerStyle={styles.container}>
-     
-        <Heading style={styles.title}> Administrador</Heading>
-        <Container  >
+
+      <Heading style={styles.title}> Administrador</Heading>
+      <Container  >
         <Text style={styles.label}>Nombre:</Text>
         <Input
           value={nombre}
@@ -130,17 +130,17 @@ const AgregarAdmin = ({ navigation }) => {
           style={styles.input}
           placeholder="Ingrese el número de teléfono"
         />
-  </Container>
-        <Button onPress={handlePickDocument} full title="Seleccionar Archivo" style={styles.button}>
-          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
-        </Button>
+      </Container>
+      <Button onPress={handlePickDocument} full title="Seleccionar Archivo" style={styles.button}>
+        <Text style={styles.buttonText}>Seleccionar Archivo</Text>
+      </Button>
 
-        {photo && <Image source={{ uri: photo }} style={styles.image} alt="Foto seleccionada" />}
+      {photo && <Image source={{ uri: photo }} style={styles.image} alt="Foto seleccionada" />}
 
-        <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
-          <Text style={styles.buttonText}>Agregar Administrador</Text>
-        </Button>
-    
+      <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
+        <Text style={styles.buttonText}>Agregar Administrador</Text>
+      </Button>
+
     </ScrollView>
   );
 };
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '90%',
-   
+
   },
   title: {
 
@@ -185,8 +185,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 25,
     backgroundColor: '#FF8300',
-   
-    
+
+
   },
   image: {
     width: 150,
