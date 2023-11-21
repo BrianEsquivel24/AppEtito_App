@@ -17,7 +17,7 @@ import FoodsList from './UsersComponents/Search/FoodsList';
 
 //imports cart
 import Cart from './UsersComponents/CartAndPayment/Cart';
-import MyButton from './UsersComponents/CartAndPayment/Checkout';
+import Checkout from './UsersComponents/CartAndPayment/Checkout';
 
 //imports de home
 import Home from './Home';
@@ -59,6 +59,9 @@ import UpdateRestaurant from './AdminComponents/Restaurant/UpdateRestaurant';
 import UserScreen from './AdminComponents/User/UserScreen'
 import AgregarUser from './AdminComponents/User/CreateUser';
 import UpdateUser from './AdminComponents/User/UpdateUser';
+
+//orders
+import OrdersScreen from './AdminComponents/Orders/OrdersScreen';
 
 import Login from './Login';
 import Example from './Home';
@@ -102,7 +105,7 @@ export const CartBottons = () => {
   return (
     <Carritou.Navigator>
       <Carritou.Screen name='Cart' component={Cart} options={{ headerShown: false }} />
-      <Carritou.Screen name='MyButton' component={MyButton} options={{ headerShown: false }} />
+      <Carritou.Screen name='Checkout' component={Checkout} options={{ headerShown: false }} />
     </Carritou.Navigator>
   )
 }
@@ -269,6 +272,7 @@ export const AdminNav = () => {
       <StackAdmin.Screen name='PaymentMethodCrud' component={PaymentMethodCrud} options={{ headerShown: false }} />
       <StackAdmin.Screen name='RestaurantCrud' component={RestaurantCrud} options={{ headerShown: false }} />
       <StackAdmin.Screen name='UserCrud' component={UserCrud} options={{ headerShown: false }} />
+      <StackAdmin.Screen name='OrdersScreen' component={OrdersScreen} options={{ headerShown: false }} />
     </StackAdmin.Navigator>
   )
 }

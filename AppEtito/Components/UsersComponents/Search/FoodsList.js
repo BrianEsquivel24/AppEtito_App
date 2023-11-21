@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, VStack, Box, Heading, Text, Spinner, ScrollView, Image, Button } from "native-base";
+import { Container, VStack, Box, Heading, Text, Spinner, ScrollView, Image, Button, Modal, HStack, Pressable } from "native-base";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCart } from '../CartContext';
@@ -13,6 +13,7 @@ const FoodsList = ({ route, navigation }) => {
   });
 
   const [loading, setLoading] = useState(true);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const restaurantId = route.params.restaurantId;
 
@@ -34,6 +35,15 @@ const FoodsList = ({ route, navigation }) => {
 
     fetchFoods();
   }, [restaurantId]);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const handleAddToCart = (food) => {
+    addToCartContext(food);
+    toggleModal();
+  };
 
   return (
     <ScrollView>
@@ -66,7 +76,7 @@ const FoodsList = ({ route, navigation }) => {
                       <Text>{food.description}</Text>
                       <Text>Precio: {food.price}</Text>
                     </VStack>
-                    <Button onPress={() => addToCartContext(food)} >Agregar al carrito</Button>
+                    <Button onPress={() => handleAddToCart(food)} >Agregar al carrito</Button>
                   </Box>
                 ))
               ) : (
@@ -75,6 +85,24 @@ const FoodsList = ({ route, navigation }) => {
             </VStack>
           )}
         </VStack>
+
+        {/* Modal */}
+        <Modal isOpen={isModalVisible} onClose={toggleModal}>
+          <Modal.Content>
+            <Modal.CloseButton />
+            <Modal.Header>Producto agregado con éxito</Modal.Header>
+            <Modal.Body>
+              <Text>Tu producto ha sido agregado al carrito con éxito.</Text>
+            </Modal.Body>
+            <Modal.Footer>
+              <HStack space={2}>
+                <Pressable onPress={toggleModal}>
+                  <Text>Aceptar</Text>
+                </Pressable>
+              </HStack>
+            </Modal.Footer>
+          </Modal.Content>
+        </Modal>
       </Container>
     </ScrollView>
   );

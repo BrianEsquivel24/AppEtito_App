@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, VStack, Box, Heading, Text, Spinner, ScrollView, Image, Button } from "native-base";
 import axios from "axios";
 
+
 const RestaurantList = ({ route, navigation }) => {
   const [restaurants, setRestaurants] = useState({
     categoria: '',
@@ -37,7 +38,7 @@ const RestaurantList = ({ route, navigation }) => {
 
   return (
     <ScrollView>
-      <Container alignItems="center">
+      
         <VStack space={4} alignItems="center" mt={4}>
           <Heading fontSize="xl" fontWeight="bold">Lista de Restaurantes</Heading>
 
@@ -74,7 +75,7 @@ const RestaurantList = ({ route, navigation }) => {
             </VStack>
           )}
         </VStack>
-      </Container>
+   
     </ScrollView>
   );
 };
