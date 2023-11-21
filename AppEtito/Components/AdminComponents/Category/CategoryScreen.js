@@ -11,7 +11,7 @@ const CategoryScreen = () => {
   useEffect(() => {
     const getCategory = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/categories/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/categories/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json',
@@ -40,7 +40,7 @@ const CategoryScreen = () => {
 
   const handleDeleteCategory = async (id) => {
     try {
-      await axios.delete(`http://192.168.0.9:8000/api/categories/${id}/`);
+      await axios.delete(`http://192.168.1.94:8000/api/categories/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting admin:', error.message);

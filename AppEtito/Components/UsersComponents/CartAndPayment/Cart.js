@@ -41,7 +41,7 @@ const Cart = ({navigation}) => {
               overflow="hidden"
             >
               <Image
-                source={{ uri: "http://192.168.1.73:8000" + item.image }}
+                source={{ uri: "http://192.168.1.94:8000" + item.image }}
                 alt="Product Image"
                 size={200}
                 resizeMode="contain"

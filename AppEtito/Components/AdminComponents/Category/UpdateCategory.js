@@ -58,7 +58,7 @@ const UpdateCategory = ({ route, navigation }) => {
       }
 
       const response = await axios.put(
-        `http://192.168.0.9:8000/api/categories/${category.id}/`,
+        `http://192.168.1.94:8000/api/categories/${category.id}/`,
         formData,
         {
           headers: {

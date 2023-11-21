@@ -12,7 +12,7 @@ const Search = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://192.168.0.9:8000/api/categories/");
+        const response = await axios.get("http://192.168.1.94:8000/api/categories/");
         setCategories(response.data);
       } catch (error) {
         console.error("Error al obtener las categorías:", error);

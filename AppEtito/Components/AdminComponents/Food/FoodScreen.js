@@ -11,7 +11,7 @@ const FoodScreen = () => {
   useEffect(() => {
     const getFoods = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/foods/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/foods/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json',
@@ -42,7 +42,7 @@ const FoodScreen = () => {
 
   const handleDeleteFood = async (id) => {
     try {
-      await axios.delete(`http://192.168.0.9:8000/api/foods/${id}/`);
+      await axios.delete(`http://192.168.1.94:8000/api/foods/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting foods:', error.message);

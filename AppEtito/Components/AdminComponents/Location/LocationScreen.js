@@ -11,7 +11,7 @@ const LocationScreen = () => {
   useEffect(() => {
     const getLocations = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/locations/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/locations/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -42,7 +42,7 @@ const LocationScreen = () => {
 
   const handleDeleteLocation = async (id) => {
     try {
-      await axios.delete(`http://192.168.0.9:8000/api/locations/${id}/`);
+      await axios.delete(`http://192.168.1.94:8000/api/locations/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting location:', error.message);
@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF8300',
     fontSize: 20,
     margin: 20,
-
+    
   },
-  cardContainer: {
+   cardContainer: {
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,
     backgroundColor: '#ffffff',
-    width: '90%', 
+    width: '90%', // Ajusta el ancho según sea necesario
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
-    textAlign: 'center', 
+    textAlign: 'center', // Alinea el texto al centro
   },
   cardImage: {
     width: '100%',
     height: 400,
     marginBottom: 8,
-    borderRadius: 8, 
+    borderRadius: 8, // Ajusta según sea necesario
   },
   cardButton: {
     backgroundColor: '#FF8300',

@@ -30,7 +30,7 @@ const AgregarFood = ({ navigation }) => {
   // Obtener  al cargar el componente
   const fetchRestaurants = async () => {
     try {
-      const response = await axios.get('http://192.168.0.9:8000/api/restaurants/');
+      const response = await axios.get('http://192.168.1.94:8000/api/restaurants/');
       setRestaurants(response.data);
     } catch (error) {
       console.error('Error al obtener categorías:', error);
@@ -76,7 +76,7 @@ const AgregarFood = ({ navigation }) => {
       }
 
       const response = await axios.post(
-        'http://192.168.0.9:8000/api/foods/',
+        'http://192.168.1.94:8000/api/foods/',
         formData,
         {
           headers: {

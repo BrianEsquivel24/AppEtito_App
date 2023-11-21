@@ -60,7 +60,7 @@ const AgregarUser = ({ navigation }) => {
       }
 
       const response = await axios.post(
-        'http://192.168.0.9:8000/api/user/',
+        'http://192.168.1.94:8000/api/user/',
         formData,
         {
           headers: {

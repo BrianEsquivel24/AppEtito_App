@@ -10,7 +10,7 @@ const RestaurantScreen = () => {
   useEffect(() => {
     const getRestaurants = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/restaurants/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/restaurants/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -41,7 +41,7 @@ const RestaurantScreen = () => {
 
   const handleDeleteRestaurant = async (id) => {
     try {
-      await axios.delete(`http://192.168.0.9:8000/api/restaurants/${id}/`);
+      await axios.delete(`http://192.168.1.94:8000/api/restaurants/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting restaurants:', error.message);

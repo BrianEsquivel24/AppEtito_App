@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Input, ScrollView, Select, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const AgregarPaymentMethod = ({ navigation }) => {
     const [cardNumber, setCardNumber] = useState('');
@@ -24,7 +25,7 @@ const AgregarPaymentMethod = ({ navigation }) => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://192.168.0.9:8000/api/user/');
+            const response = await axios.get('http://192.168.1.94:8000/api/user/');
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener usuarios:', error);
@@ -57,7 +58,7 @@ const AgregarPaymentMethod = ({ navigation }) => {
             formData.append('user', userId);
 
             const response = await axios.post(
-                'http://192.168.0.9:8000/api/payment/',
+                'http://192.168.1.94:8000/api/payment/',
                 formData,
                 {
                     headers: {
@@ -78,47 +79,52 @@ const AgregarPaymentMethod = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container style={{ paddingTop: 40 }} alignItems="center">
-                <Heading>Create Method Payment</Heading>
-                <Text>Card Number:</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+           
+                <Heading style={styles.title}>Create Method Payment</Heading>
+                <Container>
+                <Text style={styles.label}>Card Number:</Text>
                 <Input
                     value={cardNumber}
                     onChangeText={(text) => setCardNumber(text)}
                     placeholder="Ingrese la dirección"
+                    style={styles.input}
                 />
 
-                <Text>Expired Date:</Text>
+                <Text style={styles.label}>Expired Date:</Text>
                 <Input
                     value={expiredDate}
                     onChangeText={(text) => setExpiredDate(text)}
                     placeholder="Ingrese la fecha asi yyyy/mm/dd"
+                    style={styles.input}
                 />
 
-                <Text>Security Code:</Text>
+                <Text style={styles.label}>Security Code:</Text>
                 <Input
                     value={securityCode}
                     onChangeText={(text) => setSecurityCode(text)}
                     placeholder="Ingrese la descripción"
+                    style={styles.input}
                 />
 
-                <Text>User:</Text>
+                <Text style={styles.label}>User:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
                     accessibilityLabel="Selecciona una categoría"
                     placeholder="Selecciona una categoría"
+                    style={styles.input}
                     onValueChange={(text) => setUserId(text)}
                 >
                     {users.map((user) => (
                         <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
                     ))}
                 </Select>
-
-                <Button onPress={handleAdd} full title="Agregar Administrador">
-                    <Text>Agregar Card</Text>
+                </Container>
+                <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
+                    <Text style={styles.buttonText}>Agregar Card</Text>
                 </Button>
-            </Container>
+           
         </ScrollView>
     );
 };

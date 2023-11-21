@@ -44,7 +44,7 @@ const Home = () => {
   useEffect(() => {
     const getRestaurants = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/restaurants/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/restaurants/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json',
@@ -62,7 +62,7 @@ const Home = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/categories/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/categories/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json',

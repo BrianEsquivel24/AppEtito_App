@@ -63,7 +63,7 @@ const AgregarAdmin = ({ navigation }) => {
       }
 
       const response = await axios.post(
-        'http://192.168.1.73:8000/api/admin/',
+        'http://192.168.1.94:8000/api/admin/',
         formData,
         {
           headers: {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const AgregarRestaurant = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -30,7 +31,7 @@ const AgregarRestaurant = ({ navigation }) => {
   // Obtener categorías al cargar el componente
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://192.168.0.9:8000/api/categories/');
+      const response = await axios.get('http://192.168.1.94:8000/api/categories/');
       setCategories(response.data);
     } catch (error) {
       console.error('Error al obtener categorías:', error);
@@ -77,7 +78,7 @@ const AgregarRestaurant = ({ navigation }) => {
       }
 
       const response = await axios.post(
-        'http://192.168.0.9:8000/api/restaurants/',
+        'http://192.168.1.94:8000/api/restaurants/',
         formData,
         {
           headers: {
@@ -98,38 +99,43 @@ const AgregarRestaurant = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
-      <Container style={{ paddingTop: 40 }} alignItems="center">
-        <Heading>CREATE RESTAURANT</Heading>
-        <Text>Nombre:</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      
+        <Heading style={styles.title}>CREATE RESTAURANT</Heading>
+        <Container  >
+        <Text style={styles.label}>Nombre:</Text>
         <Input
           value={name}
           onChangeText={(text) => setName(text)}
           placeholder="Ingrese el nombre"
+          style={styles.input}
         />
 
-        <Text>Description:</Text>
+        <Text style={styles.label}>Description:</Text>
         <Input
           value={description}
           onChangeText={(text) => setDescription(text)}
           placeholder="Ingrese la description"
+          style={styles.input}
         />
 
-        <Text>Location:</Text>
+        <Text style={styles.label}>Location:</Text>
         <Input
           value={location}
           onChangeText={(text) => setLocation(text)}
           placeholder="Ingrese la location"
+          style={styles.input}
         />
 
-        <Text>Sucursales:</Text>
+        <Text style={styles.label}>Sucursales:</Text>
         <Input
           value={branches}
           onChangeText={(text) => setBranches(text)}
           placeholder="Ingrese la cantidad de sucursales"
+          style={styles.input}
         />
 
-        <Text>Categoría:</Text>
+        <Text style={styles.label}>Categoría:</Text>
         <Select
           selectedValue={categoryId}
           minWidth="200"
@@ -141,7 +147,7 @@ const AgregarRestaurant = ({ navigation }) => {
             <Select.Item key={category.id} label={`${category.id} - ${category.name}`} value={category.id} />
           ))}
         </Select>
-
+        </Container>
         <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
           <Text>Seleccionar Archivo</Text>
         </Button>
@@ -151,7 +157,7 @@ const AgregarRestaurant = ({ navigation }) => {
         <Button onPress={handleAdd} full title="Agregar Administrador">
           <Text>Agregar Restaurant</Text>
         </Button>
-      </Container>
+     
     </ScrollView>
   );
 };

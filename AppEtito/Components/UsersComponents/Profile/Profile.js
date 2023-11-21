@@ -21,7 +21,7 @@ const Profile = ({ navigation }) => {
     const fetchUser = async () => {
       try {
         const userId = await AsyncStorage.getItem('id');
-        const response = await axios.get(`http://192.168.1.73:8000/api/user/${userId}/`);
+        const response = await axios.get(`http://192.168.1.94:8000/api/user/${userId}/`);
         setUser(response.data);
       } catch (error) {
         console.error('Error al obtener la información del usuario:', error);

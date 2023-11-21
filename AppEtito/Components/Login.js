@@ -16,7 +16,7 @@ const Login = () => {
 
   const handleLogin = () => {
     // Peticion al back
-    axios.post('http://192.168.0.9:8000/api/login/', {
+    axios.post('http://192.168.1.94:8000/api/login/', {
       nombre: username,
       password: password,
     })

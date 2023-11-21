@@ -22,7 +22,7 @@ const AgregarPaymentMethodUser = ({ navigation }) => {
 
             // Omitir 'user' en FormData ya que se manejará de manera diferente
 
-            const response = await axios.post('http://192.168.1.73:8000/api/payment/', formData, {
+            const response = await axios.post('http://192.168.1.94:8000/api/payment/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Input, ScrollView, Image, Select, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const UpdateLocation = ({ route, navigation }) => {
     const { location } = route.params;
@@ -25,7 +26,7 @@ const UpdateLocation = ({ route, navigation }) => {
 
     const fetchUser = async () => {
         try {
-            const response = await axios.get('http://192.168.0.9:8000/api/user/');
+            const response = await axios.get('http://192.168.1.94:8000/api/user/');
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener categorías:', error);
@@ -63,7 +64,7 @@ const UpdateLocation = ({ route, navigation }) => {
 
 
             const response = await axios.put(
-                `http://192.168.0.9:8000/api/locations/${location.id}/`,
+                `http://192.168.1.94:8000/api/locations/${location.id}/`,
                 formData,
                 {
                     headers: {
@@ -84,36 +85,42 @@ const UpdateLocation = ({ route, navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container style={{ paddingTop: 40 }} alignItems="center">
-                <Heading>UPDATE LOCATION</Heading>
-                <Text>Address:</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+          
+                <Heading style={styles.title}>UPDATE LOCATION</Heading>
+                <Container style={styles.formContainer} >
+
+                <Text style={styles.label}>Address:</Text>
                 <Input
                     value={address}
                     onChangeText={(text) => setAddress(text)}
                     placeholder="Ingrese la address"
+                    style={styles.input}
                 />
 
-                <Text>Address Number:</Text>
+                <Text style={styles.label}>Address Number:</Text>
                 <Input
                     value={addressNumber}
                     onChangeText={(text) => setAddressNumber(text)}
                     placeholder="Ingrese la address number"
+                    style={styles.input}
                 />
 
-                <Text>Description:</Text>
+                <Text style={styles.label}>Description:</Text>
                 <Input
                     value={description}
                     onChangeText={(text) => setDescription(text)}
                     placeholder="Ingrese la descripcion"
+                    style={styles.input}
                 />
 
-                <Text>Users:</Text>
+                <Text style={styles.label}>Users:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
                     accessibilityLabel="Selecciona una categoría"
                     placeholder="Selecciona una categoría"
+                    style={styles.input}
                     onValueChange={(text) => setUserId(text)}  // Corregir aquí
                 >
                     {users.map((users) => (
@@ -121,13 +128,62 @@ const UpdateLocation = ({ route, navigation }) => {
                     ))}
                 </Select>
 
-
-                <Button onPress={handleUpdate} full title="Actualizar Administrador">
-                    <Text>Actualizar User</Text>
+                </Container>
+                <Button onPress={handleUpdate} full style={styles.button}>
+                    <Text style={styles.buttonText}>Actualizar User</Text>
                 </Button>
-            </Container>
+           
         </ScrollView>
     );
 };
 
+const styles = StyleSheet.create({
+    container: {
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    formContainer: {
+      width: '90%',
+     
+    },
+    title: {
+  
+      color: '#344340',
+      fontWeight: 'bold',
+      fontSize: 40,
+      lineHeight: 120,
+      textAlign: 'center',
+    },
+    label: {
+      fontSize: 16,
+      marginBottom: 5,
+    },
+    input: {
+  
+      marginBottom: 5,
+      borderColor: '#ccc', // Color del borde
+      borderWidth: 1,
+  
+      paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+      paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+      backgroundColor: '#fff', // Color de fondo del input
+  
+    },
+    button: {
+      width: '80%',
+      height: 50,
+      borderRadius: 25,
+      padding: 10,
+      marginTop: 25,
+      backgroundColor: '#FF8300',
+     
+      
+    },
+    buttonText: {
+      color: '#ffffff',
+      fontWeight: 'bold',
+    }
+  });
+  
 export default UpdateLocation;

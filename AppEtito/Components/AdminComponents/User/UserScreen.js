@@ -10,7 +10,7 @@ const UserScreen = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get('http://192.168.0.9:8000/api/user/', {
+        const response = await axios.get('http://192.168.1.94:8000/api/user/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -41,7 +41,7 @@ const UserScreen = () => {
 
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://192.168.0.9:8000/api/user/${id}/`);
+      await axios.delete(`http://192.168.1.94:8000/api/user/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting user:', error.message);

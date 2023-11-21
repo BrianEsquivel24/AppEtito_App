@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, Input, Button, Select, DateTimePicker, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 const UpdatePaymentMethod = ({ route, navigation }) => {
     const { paymentMethod } = route.params;
@@ -59,7 +60,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
             formData.append('user', userId);
 
             const response = await axios.put(
-                `http://192.168.0.9:8000/api/payment/${paymentMethod.id}/`,
+                `http://192.168.1.94:8000/api/payment/${paymentMethod.id}/`,
                 formData,
                 {
                     headers: {
@@ -80,49 +81,108 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container style={{ paddingTop: 40 }} alignItems="center">
-                <Heading>UPDATE PAYMENT METHOD</Heading>
-                <Text>Card Number:</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+          
+                <Heading style={styles.title}>UPDATE PAYMENT METHOD</Heading>
+                <Container style={styles.formContainer}>
+                <Text style={styles.label}>Card Number:</Text>
                 <Input
                     value={cardNumber}
                     onChangeText={(text) => setCardNumber(text)}
                     placeholder="Ingrese el número de la tarjeta"
+                    style={styles.input}
                 />
 
-                <Text>Expired Date:</Text>
+                <Text style={styles.label}>Expired Date:</Text>
                 <Input
                     value={expiredDate}
                     onChangeText={(text) => setExpiredDate(text)}
                     placeholder="Ingrese la fecha asi yyyy/mm/dd"
+                    style={styles.input}
                 />
 
-                <Text>Security Code:</Text>
+                <Text style={styles.label}>Security Code:</Text>
                 <Input
                     value={securityCode}
                     onChangeText={(text) => setSecurityCode(text)}
                     placeholder="Ingrese el código de seguridad"
+                    style={styles.input}
                 />
 
-                <Text>Users:</Text>
+                <Text style={styles.label}>Users:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
                     accessibilityLabel="Selecciona un usuario"
                     placeholder="Selecciona un usuario"
+                    style={styles.input}
                     onValueChange={(text) => setUserId(text)}
                 >
                     {users.map((user) => (
                         <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
                     ))}
                 </Select>
-
-                <Button onPress={handleUpdate} full title="Actualizar Payment Method">
-                    <Text>Actualizar Payment Method</Text>
+                </Container>
+                <Button onPress={handleUpdate} full style={styles.button}>
+                    <Text style={styles.buttonText}>Actualizar Payment Method</Text>
                 </Button>
-            </Container>
+           
         </ScrollView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    formContainer: {
+      width: '90%',
+     
+    },
+    title: {
+  
+      color: '#344340',
+      fontWeight: 'bold',
+      fontSize: 40,
+      lineHeight: 120,
+      textAlign: 'center',
+    },
+    label: {
+      fontSize: 16,
+      marginBottom: 5,
+    },
+    input: {
+  
+      marginBottom: 5,
+      borderColor: '#ccc', // Color del borde
+      borderWidth: 1,
+  
+      paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+      paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+      backgroundColor: '#fff', // Color de fondo del input
+  
+    },
+    button: {
+      width: '80%',
+      height: 50,
+      borderRadius: 25,
+      padding: 10,
+      marginTop: 25,
+      backgroundColor: '#FF8300',
+     
+      
+    },
+    image: {
+      width: 150,
+      height: 150,
+      marginTop: 20,
+    },
+    buttonText: {
+      color: '#ffffff',
+      fontWeight: 'bold',
+    }
+  });
 
 export default UpdatePaymentMethod;
