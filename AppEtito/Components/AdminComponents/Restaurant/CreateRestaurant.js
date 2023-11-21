@@ -141,6 +141,7 @@ const AgregarRestaurant = ({ navigation }) => {
           minWidth="200"
           accessibilityLabel="Selecciona una categoría"
           placeholder="Selecciona una categoría"
+          style={styles.input}
           onValueChange={(text) => setCategoryId(text)}
         >
           {categories.map((category) => (
@@ -148,18 +149,72 @@ const AgregarRestaurant = ({ navigation }) => {
           ))}
         </Select>
         </Container>
-        <Button onPress={handlePickDocument} full title="Seleccionar Archivo">
-          <Text>Seleccionar Archivo</Text>
+        <Button onPress={handlePickDocument} full style={styles.button}>
+          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
         </Button>
 
-        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
+        {image && <Image source={{ uri: image }} style={styles.image} alt="Foto seleccionada" />}
 
-        <Button onPress={handleAdd} full title="Agregar Administrador">
-          <Text>Agregar Restaurant</Text>
+        <Button onPress={handleAdd} full style={styles.button}>
+          <Text style={styles.buttonText}>Agregar Restaurant</Text>
         </Button>
      
     </ScrollView>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  formContainer: {
+    width: '90%',
+   
+  },
+  title: {
+
+    color: '#344340',
+    fontWeight: 'bold',
+    fontSize: 40,
+    lineHeight: 120,
+    textAlign: 'center',
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+
+    marginBottom: 5,
+    borderColor: '#ccc', // Color del borde
+    borderWidth: 1,
+
+    paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+    paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+    backgroundColor: '#fff', // Color de fondo del input
+
+  },
+  button: {
+    width: '80%',
+    height: 50,
+    borderRadius: 25,
+    padding: 10,
+    marginTop: 25,
+    backgroundColor: '#FF8300',
+   
+    
+  },
+  image: {
+    width: 150,
+    height: 150,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  }
+});
+
 
 export default AgregarRestaurant;
