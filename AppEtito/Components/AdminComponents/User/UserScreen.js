@@ -12,7 +12,7 @@ const UserScreen = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get('http://192.168.1.94:8000/api/user/', {
+        const response = await axios.get('http://192.168.1.73:8000/api/user/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -55,7 +55,7 @@ const UserScreen = () => {
        <View style={styles.mainContainer}>
         <View style={styles.container}>
       
-        <Heading style={styles.title}>USER</Heading>
+        <Heading style={styles.title}>USUARIOS</Heading>
      
           <Button
            style={styles.button}

@@ -11,10 +11,10 @@ const RestaurantScreen = () => {
   useEffect(() => {
     const getRestaurants = async () => {
       try {
-        const response = await axios.get('http://192.168.1.94:8000/api/restaurants/', {
+        const response = await axios.get('http://192.168.1.73:8000/api/restaurants/', {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Accept': 'application/json', 
+            'Accept': 'application/json',
 
           },
         });
@@ -53,28 +53,28 @@ const RestaurantScreen = () => {
     <ScrollView >
       <View style={styles.mainContainer}>
         <View style={styles.container}>
-     
-        <Heading style={styles.title}>RESTAURANTS </Heading>
-        <Center>
-          <Button 
-           style={styles.button}
-           onPress={agregarRestaurant} full>
-            <Text style={styles.buttonText}>Agregar Restaurant</Text>
-          </Button>
 
-          {data.map((item) => (
-            <Box key={item.id} style={styles.cardContainer}>
-              <Text style={styles.cardTitle}>{item.name}</Text>
-              <Image source={{ uri: item.image }} alt="Product Image" style={styles.cardImage} resizeMode="contain" />
-              <Button onPress={() => editarRestaurant(item)} style={styles.cardButton}>
-                <Text style={styles.buttonText}>Editar</Text>
-              </Button>
-              <Button onPress={() => handleDeleteRestaurant(item.id)} style={styles.cardButton}>
-                <Text style={styles.buttonText}>Eliminar</Text>
-              </Button>
-            </Box>
-          ))}
-        </Center>
+          <Heading style={styles.title}>RESTAURANTES </Heading>
+
+            <Button
+              style={styles.button}
+              onPress={agregarRestaurant} full>
+              <Text style={styles.buttonText}>Agregar Restaurant</Text>
+            </Button>
+
+            {data.map((item) => (
+              <Box key={item.id} style={styles.cardContainer}>
+                <Text style={styles.cardTitle}>{item.name}</Text>
+                <Image source={{ uri: item.image }} alt="Product Image" style={styles.cardImage} resizeMode="contain" />
+                <Button onPress={() => editarRestaurant(item)} style={styles.cardButton}>
+                  <Text style={styles.buttonText}>Editar</Text>
+                </Button>
+                <Button onPress={() => handleDeleteRestaurant(item.id)} style={styles.cardButton}>
+                  <Text style={styles.buttonText}>Eliminar</Text>
+                </Button>
+              </Box>
+            ))}
+
         </View>
       </View>
     </ScrollView>
@@ -111,9 +111,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF8300',
     fontSize: 20,
     margin: 20,
-    
+
   },
-   cardContainer: {
+  cardContainer: {
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,

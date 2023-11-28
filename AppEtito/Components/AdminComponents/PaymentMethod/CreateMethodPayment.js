@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Input, ScrollView, Select, Container, Heading } from 'native-base';
+import {Text, Button, Input, ScrollView, Select, Container, Heading } from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
-import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { View, StyleSheet, TextInput, SafeAreaView } from 'react-native';
+
 
 const AgregarPaymentMethod = ({ navigation }) => {
     const [cardNumber, setCardNumber] = useState('');
@@ -81,17 +82,17 @@ const AgregarPaymentMethod = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
            
-                <Heading style={styles.title}>Create Method Payment</Heading>
+                <Heading style={styles.title}>Tarjeta</Heading>
                 <Container>
-                <Text style={styles.label}>Card Number:</Text>
+                <Text style={styles.label}>Numero de la tarjeta:</Text>
                 <Input
                     value={cardNumber}
                     onChangeText={(text) => setCardNumber(text)}
-                    placeholder="Ingrese la dirección"
+                    placeholder="Ingrese el numero"
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Expired Date:</Text>
+                <Text style={styles.label}>Fecha de expiracion:</Text>
                 <Input
                     value={expiredDate}
                     onChangeText={(text) => setExpiredDate(text)}
@@ -99,20 +100,20 @@ const AgregarPaymentMethod = ({ navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Security Code:</Text>
+                <Text style={styles.label}>Codigo de seguridad:</Text>
                 <Input
                     value={securityCode}
                     onChangeText={(text) => setSecurityCode(text)}
-                    placeholder="Ingrese la descripción"
+                    placeholder="Ingrese el codigo de seguridad"
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>User:</Text>
+                <Text style={styles.label}>Usuario:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
                     accessibilityLabel="Selecciona una categoría"
-                    placeholder="Selecciona una categoría"
+                    placeholder="Selecciona un usuario"
                     style={styles.input}
                     onValueChange={(text) => setUserId(text)}
                 >
@@ -122,11 +123,79 @@ const AgregarPaymentMethod = ({ navigation }) => {
                 </Select>
                 </Container>
                 <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
-                    <Text style={styles.buttonText}>Agregar Card</Text>
+                    <Text style={styles.buttonText}>Agregar Tarjeta</Text>
                 </Button>
            
         </ScrollView>
     );
 };
 
+const styles = StyleSheet.create({
+    mainContainer: {
+      backgroundColor: '#f1f1f1',
+      flex: 1,
+    },
+    container: {
+  
+      backgroundColor: '#f1f1f1',
+      alignItems: 'center',
+      justifyContent: 'center',
+  
+    },
+    title: {
+      paddingTop: 50,
+      color: '#344340',
+      fontWeight: 'bold',
+      fontSize: 30,
+      lineHeight: 80,
+    },
+  
+    button: {
+      width: '80%',
+      height: 50,
+      borderRadius: 25,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 25,
+      backgroundColor: '#FF8300',
+      fontSize: 20,
+      margin: 20,
+      
+    },
+     cardContainer: {
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+      backgroundColor: '#ffffff',
+      width: '90%', // Ajusta el ancho según sea necesario
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.2,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    cardTitle: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 8,
+      textAlign: 'center', // Alinea el texto al centro
+    },
+    cardImage: {
+      width: '100%',
+      height: 400,
+      marginBottom: 8,
+      borderRadius: 8, // Ajusta según sea necesario
+    },
+    cardButton: {
+      backgroundColor: '#FF8300',
+      padding: 10,
+      borderRadius: 5,
+      alignItems: 'center',
+      marginBottom: 8,
+    },
+    buttonText: {
+      color: '#ffffff',
+      fontWeight: 'bold',
+    }
+  });
 export default AgregarPaymentMethod;

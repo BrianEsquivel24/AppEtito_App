@@ -130,21 +130,16 @@ const AgregarAdmin = ({ navigation }) => {
           style={styles.input}
           placeholder="Ingrese el número de teléfono"
         />
-  </Container>
-        <Button onPress={handlePickDocument} full  style={styles.button}>
-          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
-        </Button>
+      </Container>
+      <Button onPress={handlePickDocument} full style={styles.button}>
+        <Text style={styles.buttonText}>Seleccionar Archivo</Text>
+      </Button>
 
       {photo && <Image source={{ uri: photo }} style={styles.image} alt="Foto seleccionada" />}
 
-      <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
+      <Button onPress={handleAdd} full style={styles.button}>
         <Text style={styles.buttonText}>Agregar Administrador</Text>
       </Button>
-
-        <Button onPress={handleAdd} full  style={styles.button}>
-          <Text style={styles.buttonText}>Agregar Administrador</Text>
-        </Button>
-    
     </ScrollView>
   );
 };

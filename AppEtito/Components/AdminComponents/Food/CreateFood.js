@@ -148,7 +148,7 @@ const AgregarFood = ({ navigation }) => {
         {image && <Image source={{ uri: image }} style={styles.image} alt="Foto seleccionada" />}
 
         <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
-          <Text style={styles.buttonText}>Agregar Restaurante</Text>
+          <Text style={styles.buttonText}>Agregar Comida</Text>
         </Button>
 
        

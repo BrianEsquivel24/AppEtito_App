@@ -99,7 +99,7 @@ const UpdateFood = ({ route, navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
 
-            <Heading style={styles.title}>COMIDA</Heading>
+            <Heading style={styles.title}>Comida</Heading>
             <Container style={styles.formContainer}>
                 <Text style={styles.label}>Nombre:</Text>
                 <Input
@@ -146,8 +146,8 @@ const UpdateFood = ({ route, navigation }) => {
 
             {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 20 }} alt="Foto seleccionada" />}
 
-            <Button onPress={handleUpdate} full title="Actualizar Administrador">
-                <Text style={styles.buttonText}>Actualizar Administrador</Text>
+            <Button onPress={handleUpdate} full title="Actualizar Administrador" style={styles.button}>
+                <Text style={styles.buttonText}>Actualizar Comida</Text>
             </Button>
 
         </ScrollView>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#ffffff',
         fontWeight: 'bold',
-      }
+    }
 });
 
 export default UpdateFood;

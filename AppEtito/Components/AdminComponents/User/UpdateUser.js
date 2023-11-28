@@ -85,7 +85,7 @@ const UpdateUser = ({ route, navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
      
-        <Heading style={styles.title}>UPDATE USER</Heading>
+        <Heading style={styles.title}>Usuario</Heading>
         <Container style={styles.formContainer}>
         <Text style={styles.label}>Nombre:</Text>
         <Input

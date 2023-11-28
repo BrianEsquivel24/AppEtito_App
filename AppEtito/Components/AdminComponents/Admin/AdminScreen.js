@@ -43,7 +43,7 @@ const AdminScreen = () => {
 
   const handleDeleteAdmin = async (id) => {
     try {
-      await axios.delete(`http://192.168.1.94:8000/api/admin/${id}/`);
+      await axios.delete(`http://192.168.1.73:8000/api/admin/${id}/`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting admin:', error.message);

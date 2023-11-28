@@ -101,7 +101,7 @@ const AgregarRestaurant = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       
-        <Heading style={styles.title}>CREATE RESTAURANT</Heading>
+        <Heading style={styles.title}>Restaurante</Heading>
         <Container  >
         <Text style={styles.label}>Nombre:</Text>
         <Input
@@ -119,11 +119,11 @@ const AgregarRestaurant = ({ navigation }) => {
           style={styles.input}
         />
 
-        <Text style={styles.label}>Location:</Text>
+        <Text style={styles.label}>Pais:</Text>
         <Input
           value={location}
           onChangeText={(text) => setLocation(text)}
-          placeholder="Ingrese la location"
+          placeholder="Ingrese el pais"
           style={styles.input}
         />
 

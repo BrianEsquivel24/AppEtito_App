@@ -11,7 +11,7 @@ const LocationScreen = () => {
   useEffect(() => {
     const getLocations = async () => {
       try {
-        const response = await axios.get('http://192.168.1.94:8000/api/locations/', {
+        const response = await axios.get('http://192.168.1.73:8000/api/locations/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -54,12 +54,12 @@ const LocationScreen = () => {
        <View style={styles.mainContainer}>
         <View style={styles.container}>
     
-        <Heading style={styles.title}>LOCATION SCREEN</Heading>
+        <Heading style={styles.title}>DIRECCIONES</Heading>
         
           <Button 
           style={styles.button}
           onPress={agregarLocation} full>
-            <Text style={styles.buttonText}>Agregar Location</Text>
+            <Text style={styles.buttonText}>Agregar Direccion</Text>
           </Button>
 
           {data.map((item) => (

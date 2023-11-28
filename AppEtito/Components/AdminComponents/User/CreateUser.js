@@ -85,7 +85,7 @@ const AgregarUser = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       
-        <Heading style={styles.title}>CREATE USER</Heading>
+        <Heading style={styles.title}>Usuario</Heading>
         <Container>
         <Text style={styles.label}>Nombre:</Text>
         <Input

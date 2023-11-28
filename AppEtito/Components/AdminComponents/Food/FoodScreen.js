@@ -11,7 +11,7 @@ const FoodScreen = () => {
   useEffect(() => {
     const getFoods = async () => {
       try {
-        const response = await axios.get('http://192.168.1.94:8000/api/foods/', {
+        const response = await axios.get('http://192.168.1.73:8000/api/foods/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json',
@@ -64,7 +64,7 @@ const FoodScreen = () => {
             {data.map((item) => (
               <Box key={item.id}  style={styles.cardContainer}>
                 <Text style={styles.cardTitle}>{item.name}</Text>
-                <Image source={{ uri: item.image }} style={styles.cardImage} resizeMode="contain" />
+                <Image source={{ uri: item.image }} style={styles.cardImage} resizeMode="contain" alt='image'/>
                 <Button onPress={() => editarFood(item)} style={styles.cardButton}>
                   <Text style={styles.buttonText}>Editar</Text>
                 </Button>

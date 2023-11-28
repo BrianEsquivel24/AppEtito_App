@@ -11,7 +11,7 @@ const PaymentMethodScreen = () => {
   useEffect(() => {
     const getPayment = async () => {
       try {
-        const response = await axios.get('http://192.168.1.94:8000/api/payment/', {
+        const response = await axios.get('http://192.168.1.73:8000/api/payment/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json', 
@@ -54,17 +54,17 @@ const PaymentMethodScreen = () => {
         <View style={styles.mainContainer}>
         <View style={styles.container}>
 
-        <Heading style={styles.title}>PAYMENT METHOD</Heading>
+        <Heading style={styles.title}>TARJETAS</Heading>
         
           <Button
            style={styles.button}
            onPress={agregarPaymentMethod} full>
-            <Text style={styles.buttonText}>Agregar Card</Text>
+            <Text style={styles.buttonText}>Agregar Tarjeta</Text>
           </Button>
 
           {data.map((item) => (
             <Box key={item.id} style={styles.cardContainer}>
-              <Text style={styles.cardTitle}>{item.cardNumber}</Text>
+              <Text style={styles.cardTitle}>Tarjetas: {item.cardNumber}</Text>
               <Button onPress={() => editarPaymentMethod(item)} style={styles.cardButton}>
                 <Text style={styles.buttonText}>Editar</Text>
               </Button>

@@ -11,7 +11,7 @@ const CategoryScreen = () => {
   useEffect(() => {
     const getCategory = async () => {
       try {
-        const response = await axios.get('http://192.168.1.94:8000/api/categories/', {
+        const response = await axios.get('http://192.168.1.73:8000/api/categories/', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json',
@@ -53,7 +53,7 @@ const CategoryScreen = () => {
         <View style={styles.container}>
 
 
-          <Heading style={styles.title}>CATEGORIA</Heading>
+          <Heading style={styles.title}>CATEGORIAS</Heading>
           <Button
             style={styles.button}
             onPress={agregarCategory} full>
@@ -68,7 +68,7 @@ const CategoryScreen = () => {
                 <Text style={styles.buttonText}>Editar</Text>
               </Button>
               <Button onPress={() => handleDeleteCategory(item.id)} style={styles.cardButton}>
-                <Text>Eliminar</Text>
+                <Text style={styles.buttonText}>Eliminar</Text>
               </Button>
             </Box>
           ))}

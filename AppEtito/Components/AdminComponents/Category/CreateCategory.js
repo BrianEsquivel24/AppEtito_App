@@ -81,7 +81,7 @@ const AgregarCategory = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
      
-        <Heading style={styles.title}>Nueva Categoria</Heading>
+        <Heading style={styles.title}>Categoria</Heading>
         <Container>
         <Text style={styles.label}>Nombre:</Text>
         <Input

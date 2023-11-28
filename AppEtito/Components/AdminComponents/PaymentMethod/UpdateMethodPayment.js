@@ -83,9 +83,9 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
           
-                <Heading style={styles.title}>UPDATE PAYMENT METHOD</Heading>
+                <Heading style={styles.title}>Tarjeta</Heading>
                 <Container style={styles.formContainer}>
-                <Text style={styles.label}>Card Number:</Text>
+                <Text style={styles.label}>Numero de la tarjeta:</Text>
                 <Input
                     value={cardNumber}
                     onChangeText={(text) => setCardNumber(text)}
@@ -93,7 +93,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Expired Date:</Text>
+                <Text style={styles.label}>Fecha de expiracion:</Text>
                 <Input
                     value={expiredDate}
                     onChangeText={(text) => setExpiredDate(text)}
@@ -101,7 +101,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Security Code:</Text>
+                <Text style={styles.label}>Código de seguridad:</Text>
                 <Input
                     value={securityCode}
                     onChangeText={(text) => setSecurityCode(text)}
@@ -109,7 +109,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Users:</Text>
+                <Text style={styles.label}>Usuario:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
@@ -124,7 +124,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
                 </Select>
                 </Container>
                 <Button onPress={handleUpdate} full style={styles.button}>
-                    <Text style={styles.buttonText}>Actualizar Payment Method</Text>
+                    <Text style={styles.buttonText}>Actualizar Tarjeta</Text>
                 </Button>
            
         </ScrollView>

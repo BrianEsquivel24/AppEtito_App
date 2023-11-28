@@ -87,26 +87,26 @@ const UpdateLocation = ({ route, navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
           
-                <Heading style={styles.title}>UPDATE LOCATION</Heading>
+                <Heading style={styles.title}>Direccion</Heading>
                 <Container style={styles.formContainer} >
 
-                <Text style={styles.label}>Address:</Text>
+                <Text style={styles.label}>Direccion:</Text>
                 <Input
                     value={address}
                     onChangeText={(text) => setAddress(text)}
-                    placeholder="Ingrese la address"
+                    placeholder="Ingrese la direccion"
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Address Number:</Text>
+                <Text style={styles.label}>Numero exterior:</Text>
                 <Input
                     value={addressNumber}
                     onChangeText={(text) => setAddressNumber(text)}
-                    placeholder="Ingrese la address number"
+                    placeholder="Ingrese numero exterior"
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Description:</Text>
+                <Text style={styles.label}>Descripcion:</Text>
                 <Input
                     value={description}
                     onChangeText={(text) => setDescription(text)}
@@ -114,12 +114,12 @@ const UpdateLocation = ({ route, navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Users:</Text>
+                <Text style={styles.label}>Usuario:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
                     accessibilityLabel="Selecciona una categoría"
-                    placeholder="Selecciona una categoría"
+                    placeholder="Selecciona un usuario"
                     style={styles.input}
                     onValueChange={(text) => setUserId(text)}  // Corregir aquí
                 >
@@ -130,7 +130,7 @@ const UpdateLocation = ({ route, navigation }) => {
 
                 </Container>
                 <Button onPress={handleUpdate} full style={styles.button}>
-                    <Text style={styles.buttonText}>Actualizar User</Text>
+                    <Text style={styles.buttonText}>Actualizar Direccion</Text>
                 </Button>
            
         </ScrollView>

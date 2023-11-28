@@ -101,7 +101,7 @@ const UpdateRestaurant = ({ route, navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
           
-                <Heading style={styles.title}>UPDATE RESTAURANT</Heading>
+                <Heading style={styles.title}>Restaurante</Heading>
                 <Container style={styles.formContainer}>
 
                 <Text style={styles.label}>Name:</Text>
@@ -121,19 +121,19 @@ const UpdateRestaurant = ({ route, navigation }) => {
                 />
 
 
-                <Text style={styles.label}>Location:</Text>
+                <Text style={styles.label}>Pais:</Text>
                 <Input
                     value={location}
                     onChangeText={(text) => setLocation(text)}
-                    placeholder="Ingrese la localización"
+                    placeholder="Ingrese el pais"
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Branches:</Text>
+                <Text style={styles.label}>Sucursales:</Text>
                 <Input
                     value={branches}
                     onChangeText={(text) => setBranches(text)}
-                    placeholder="Ingrese la cantidad de branches"
+                    placeholder="Ingrese la cantidad de sucursales"
                     style={styles.input}
                 />
 
@@ -159,7 +159,7 @@ const UpdateRestaurant = ({ route, navigation }) => {
                 {image && <Image source={{ uri: image }} style={styles.image} alt="Foto seleccionada" />}
 
                 <Button onPress={handleUpdate} full style={styles.button}>
-                    <Text style={styles.buttonText}>Actualizar Administrador</Text>
+                    <Text style={styles.buttonText}>Actualizar Restaurante</Text>
                 </Button>
            
         </ScrollView>

@@ -86,9 +86,9 @@ const AgregarLocation = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
            
-                <Heading style={styles.title}>New Location</Heading>
+                <Heading style={styles.title}>Dirección</Heading>
                 <Container  >
-                <Text style={styles.label}>Address:</Text>
+                <Text style={styles.label}>Direccion:</Text>
                 <Input
                     value={address}
                     onChangeText={(text) => setAddress(text)}
@@ -96,15 +96,15 @@ const AgregarLocation = ({ navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Address Number:</Text>
+                <Text style={styles.label}>Numero exterior:</Text>
                 <Input
                     value={addressNumber}
                     onChangeText={(text) => setAddressNumber(text)}
-                    placeholder="Ingrese la location"
+                    placeholder="Ingrese el numero exterior"
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Description:</Text>
+                <Text style={styles.label}>Descripcion:</Text>
                 <Input
                     value={description}
                     onChangeText={(text) => setDescription(text)}
@@ -112,12 +112,12 @@ const AgregarLocation = ({ navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>User:</Text>
+                <Text style={styles.label}>Usuario:</Text>
                 <Select
                     selectedValue={userId}
                     minWidth="200"
                     accessibilityLabel="Selecciona una categoría"
-                    placeholder="Selecciona una categoría"
+                    placeholder="Selecciona un usuario"
                     style={styles.input}
                     onValueChange={(text) => setUserId(text)}
                 >
@@ -128,7 +128,7 @@ const AgregarLocation = ({ navigation }) => {
 
                 </Container>
                 <Button onPress={handleAdd} full title="Agregar Administrador" style={styles.button}>
-                    <Text style={styles.buttonText}>Agregar Location</Text>
+                    <Text style={styles.buttonText}>Agregar Direccion</Text>
                 </Button>
             
         </ScrollView>
