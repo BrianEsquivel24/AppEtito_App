@@ -64,7 +64,7 @@ import UpdateUser from './AdminComponents/User/UpdateUser';
 import OrdersScreen from './AdminComponents/Orders/OrdersScreen';
 
 import Login from './Login';
-import Example from './Home';
+import AgregarNewUser from './NewUser';
 import AdminHome from './AdminHome';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -283,6 +283,7 @@ const Navigation = () => {
   return (
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="AgregarNewUser" component={AgregarNewUser} options={{ headerShown: false }} />
       <Stack.Screen name="AdminView" component={AdminNav} options={{ headerShown: false }} />
       <Stack.Screen name="UserHome" component={NavTab} options={{ headerShown: false }} />
     </Stack.Navigator>

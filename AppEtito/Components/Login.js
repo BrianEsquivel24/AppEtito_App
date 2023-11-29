@@ -6,6 +6,7 @@ import { View, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import Svg, { Defs, Pattern, Use, Image, Path } from "react-native-svg"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AgregarNewUser from './NewUser';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -109,7 +110,7 @@ const Login = () => {
             color: "warning.500",
             fontWeight: "medium",
             fontSize: "sm"
-          }} href="#">
+          }} onPress={()=> navigation.navigate('AgregarNewUser')}>
             Crear cuenta
           </Link>
         </HStack>
