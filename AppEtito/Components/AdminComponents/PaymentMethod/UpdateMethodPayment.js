@@ -3,11 +3,12 @@ import { ScrollView, Text, Input, Button, Select, DateTimePicker, Container, Hea
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const UpdatePaymentMethod = ({ route, navigation }) => {
     const { paymentMethod } = route.params;
     const [cardNumber, setCardNumber] = useState(paymentMethod.cardNumber);
-    const [expiredDate, setExpiredDate] = useState(new Date(paymentMethod.expiredDate));
+    const [expiredDate, setExpiredDate] = useState(paymentMethod.expiredDate);
     const [securityCode, setSecurityCode] = useState(paymentMethod.securityCode);
     const [userId, setUserId] = useState(paymentMethod.user);
     const [users, setUsers] = useState([]);
@@ -26,7 +27,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
 
     const fetchUser = async () => {
         try {
-            const response = await axios.get('http://192.168.0.9:8000/api/user/');
+            const response = await axios.get('http://192.168.1.73:8000/api/user/');
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener usuarios:', error);
@@ -52,6 +53,11 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
 
     const handleUpdate = async () => {
         try {
+
+            if (!cardNumber || !expiredDate || !securityCode || !userId) {
+                Alert.alert('Por favor, ingrese todos los campos');
+                return;
+              }
             const formData = new FormData();
             formData.append('cardNumber', cardNumber);
             formData.append('expiredDate', expiredDate);
@@ -60,7 +66,7 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
             formData.append('user', userId);
 
             const response = await axios.put(
-                `http://192.168.1.94:8000/api/payment/${paymentMethod.id}/`,
+                `http://192.168.1.73:8000/api/payment/${paymentMethod.id}/`,
                 formData,
                 {
                     headers: {
@@ -82,9 +88,9 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-          
-                <Heading style={styles.title}>Tarjeta</Heading>
-                <Container style={styles.formContainer}>
+
+            <Heading style={styles.title}>Tarjeta</Heading>
+            <Container style={styles.formContainer}>
                 <Text style={styles.label}>Numero de la tarjeta:</Text>
                 <Input
                     value={cardNumber}
@@ -122,67 +128,67 @@ const UpdatePaymentMethod = ({ route, navigation }) => {
                         <Select.Item key={user.id} label={`${user.id} - ${user.nombre}`} value={user.id} />
                     ))}
                 </Select>
-                </Container>
-                <Button onPress={handleUpdate} full style={styles.button}>
-                    <Text style={styles.buttonText}>Actualizar Tarjeta</Text>
-                </Button>
-           
+            </Container>
+            <Button onPress={handleUpdate} full style={styles.button}>
+                <Text style={styles.buttonText}>Actualizar Tarjeta</Text>
+            </Button>
+
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-      flexGrow: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     formContainer: {
-      width: '90%',
-     
+        width: '90%',
+
     },
     title: {
-  
-      color: '#344340',
-      fontWeight: 'bold',
-      fontSize: 40,
-      lineHeight: 120,
-      textAlign: 'center',
+
+        color: '#344340',
+        fontWeight: 'bold',
+        fontSize: 40,
+        lineHeight: 120,
+        textAlign: 'center',
     },
     label: {
-      fontSize: 16,
-      marginBottom: 5,
+        fontSize: 16,
+        marginBottom: 5,
     },
     input: {
-  
-      marginBottom: 5,
-      borderColor: '#ccc', // Color del borde
-      borderWidth: 1,
-  
-      paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
-      paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
-      backgroundColor: '#fff', // Color de fondo del input
-  
+
+        marginBottom: 5,
+        borderColor: '#ccc', // Color del borde
+        borderWidth: 1,
+
+        paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
+        paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
+        backgroundColor: '#fff', // Color de fondo del input
+
     },
     button: {
-      width: '80%',
-      height: 50,
-      borderRadius: 25,
-      padding: 10,
-      marginTop: 25,
-      backgroundColor: '#FF8300',
-     
-      
+        width: '80%',
+        height: 50,
+        borderRadius: 25,
+        padding: 10,
+        marginTop: 25,
+        backgroundColor: '#FF8300',
+
+
     },
     image: {
-      width: 150,
-      height: 150,
-      marginTop: 20,
+        width: 150,
+        height: 150,
+        marginTop: 20,
     },
     buttonText: {
-      color: '#ffffff',
-      fontWeight: 'bold',
+        color: '#ffffff',
+        fontWeight: 'bold',
     }
-  });
+});
 
 export default UpdatePaymentMethod;

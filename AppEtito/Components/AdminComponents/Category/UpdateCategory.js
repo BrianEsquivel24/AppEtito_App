@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const UpdateCategory = ({ route, navigation }) => {
   const { category } = route.params;
@@ -39,6 +40,12 @@ const UpdateCategory = ({ route, navigation }) => {
 
   const handleUpdate = async () => {
     try {
+
+      if (!name || !description || !image) {
+        Alert.alert('Por favor, ingrese todos los campos');
+        return;
+      }
+
       const formData = new FormData();
       formData.append('name', name);
       formData.append('description', description);
@@ -141,9 +148,9 @@ const styles = StyleSheet.create({
     borderColor: '#ccc', // Color del borde
     borderWidth: 1,
 
-    paddingHorizontal: 8, // Ajusta el espacio horizontal dentro del input
-    paddingVertical: 6,   // Ajusta el espacio vertical dentro del input
-    backgroundColor: '#fff', // Color de fondo del input
+    paddingHorizontal: 8, 
+    paddingVertical: 6,   
+    backgroundColor: '#fff', 
 
   },
   button: {

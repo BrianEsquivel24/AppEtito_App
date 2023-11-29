@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const AgregarUser = ({ navigation }) => {
   const [nombre, setNombre] = useState('');
@@ -40,6 +41,11 @@ const AgregarUser = ({ navigation }) => {
 
   const handleAdd = async () => {
     try {
+
+      if (!nombre || !email || !password || !phone_number || !photo) {
+        Alert.alert('Por favor, ingrese todos los campos');
+        return;
+      }
       const formData = new FormData();
       formData.append('nombre', nombre);
       formData.append('email', email);

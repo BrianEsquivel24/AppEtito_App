@@ -3,6 +3,7 @@ import { Text, Button, Input, ScrollView, Image, Container, Heading } from 'nati
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const UpdateAdmin = ({ route, navigation }) => {
   const { admin } = route.params;
@@ -42,6 +43,12 @@ const UpdateAdmin = ({ route, navigation }) => {
 
   const handleUpdate = async () => {
     try {
+
+      if (!nombre || !password || !email || !phone_number || !address || !photo) {
+        Alert.alert('Por favor, ingrese todos los campos');
+        return;
+      }
+
       const formData = new FormData();
       formData.append('nombre', nombre);
       formData.append('address', address);

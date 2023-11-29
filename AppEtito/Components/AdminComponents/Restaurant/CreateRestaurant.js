@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const AgregarRestaurant = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -58,6 +59,12 @@ const AgregarRestaurant = ({ navigation }) => {
 
   const handleAdd = async () => {
     try {
+
+      //validacion de vacio
+      if (!name || !description || !location || !branches || !categoryId || !image) {
+        Alert.alert('Por favor, ingrese todos los campos');
+        return;
+      }
       const formData = new FormData();
       formData.append('name', name);
       formData.append('description', description);
@@ -100,9 +107,9 @@ const AgregarRestaurant = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      
-        <Heading style={styles.title}>Restaurante</Heading>
-        <Container  >
+
+      <Heading style={styles.title}>Restaurante</Heading>
+      <Container  >
         <Text style={styles.label}>Nombre:</Text>
         <Input
           value={name}
@@ -148,17 +155,17 @@ const AgregarRestaurant = ({ navigation }) => {
             <Select.Item key={category.id} label={`${category.id} - ${category.name}`} value={category.id} />
           ))}
         </Select>
-        </Container>
-        <Button onPress={handlePickDocument} full style={styles.button}>
-          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
-        </Button>
+      </Container>
+      <Button onPress={handlePickDocument} full style={styles.button}>
+        <Text style={styles.buttonText}>Seleccionar Archivo</Text>
+      </Button>
 
-        {image && <Image source={{ uri: image }} style={styles.image} alt="Foto seleccionada" />}
+      {image && <Image source={{ uri: image }} style={styles.image} alt="Foto seleccionada" />}
 
-        <Button onPress={handleAdd} full style={styles.button}>
-          <Text style={styles.buttonText}>Agregar Restaurant</Text>
-        </Button>
-     
+      <Button onPress={handleAdd} full style={styles.button}>
+        <Text style={styles.buttonText}>Agregar Restaurant</Text>
+      </Button>
+
     </ScrollView>
   );
 };
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '90%',
-   
+
   },
   title: {
 
@@ -202,8 +209,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 25,
     backgroundColor: '#FF8300',
-   
-    
+
+
   },
   image: {
     width: 150,

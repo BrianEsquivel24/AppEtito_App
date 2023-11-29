@@ -7,6 +7,7 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import Svg, { Defs, Pattern, Use, Image, Path } from "react-native-svg"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AgregarNewUser from './NewUser';
+import { Alert } from 'react-native';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -16,6 +17,12 @@ const Login = () => {
 
 
   const handleLogin = () => {
+
+    //validacion de vacio
+    if (!username || !password) {
+      Alert.alert('Por favor, ingrese todos los campos');
+      return;
+    }
     // Peticion al back
     axios.post('http://192.168.1.73:8000/api/login/', {
       nombre: username,
@@ -36,14 +43,13 @@ const Login = () => {
           console.log("async: ", await AsyncStorage.getItem('id'));
 
         } else {
-          // Falta poner un modal o algo que aparezca si no encuentra el usuario
-          // ni en admin ni en user
           console.log("Usuario no encontrado");
         }
       })
       .catch(function (error) {
         // Los errores
         console.log(error);
+        Alert.alert('Usuario o contraseña incorrectos')
       });
 
 
@@ -110,7 +116,7 @@ const Login = () => {
             color: "warning.500",
             fontWeight: "medium",
             fontSize: "sm"
-          }} onPress={()=> navigation.navigate('AgregarNewUser')}>
+          }} onPress={() => navigation.navigate('AgregarNewUser')}>
             Crear cuenta
           </Link>
         </HStack>

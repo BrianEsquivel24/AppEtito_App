@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Select, Container, Headin
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const UpdateRestaurant = ({ route, navigation }) => {
     const { restaurant } = route.params;
@@ -56,6 +57,12 @@ const UpdateRestaurant = ({ route, navigation }) => {
 
     const handleUpdate = async () => {
         try {
+
+            if (!name || !description || !location || !branches || !categoryId || !image) {
+                Alert.alert('Por favor, ingrese todos los campos');
+                return;
+              }
+
             const formData = new FormData();
             formData.append('name', name);
             formData.append('description', description);

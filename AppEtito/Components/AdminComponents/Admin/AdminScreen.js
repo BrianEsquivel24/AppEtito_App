@@ -135,8 +135,8 @@ const styles = StyleSheet.create({
     textAlign: 'center', // Alinea el texto al centro
   },
   cardImage: {
-    width: '100%',
-    height: 400,
+    width: 350,
+    height: 350,
     marginBottom: 8,
     borderRadius: 8, // Ajusta según sea necesario
   },

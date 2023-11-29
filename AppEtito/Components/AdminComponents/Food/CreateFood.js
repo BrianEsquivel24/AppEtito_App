@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Select, CheckIcon, Center
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 
 const AgregarFood = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -30,7 +31,7 @@ const AgregarFood = ({ navigation }) => {
   // Obtener  al cargar el componente
   const fetchRestaurants = async () => {
     try {
-      const response = await axios.get('http://192.168.1.94:8000/api/restaurants/');
+      const response = await axios.get('http://192.168.1.73:8000/api/restaurants/');
       setRestaurants(response.data);
     } catch (error) {
       console.error('Error al obtener categorías:', error);
@@ -57,6 +58,17 @@ const AgregarFood = ({ navigation }) => {
 
   const handleAdd = async () => {
     try {
+
+      if (!name || !description || !price || !restaurantId || !image) {
+        Alert.alert('Por favor, ingrese todos los campos');
+        return;
+      }
+
+      if (isNaN(price)){
+        Alert.alert('Ingrese un precio en numerico');
+        return;
+    }
+
       const formData = new FormData();
       formData.append('name', name);
       formData.append('description', description);

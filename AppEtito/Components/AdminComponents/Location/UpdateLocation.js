@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Select, Container, Headin
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const UpdateLocation = ({ route, navigation }) => {
     const { location } = route.params;
@@ -26,7 +27,7 @@ const UpdateLocation = ({ route, navigation }) => {
 
     const fetchUser = async () => {
         try {
-            const response = await axios.get('http://192.168.1.94:8000/api/user/');
+            const response = await axios.get('http://192.168.1.73:8000/api/user/');
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener categorías:', error);
@@ -54,6 +55,12 @@ const UpdateLocation = ({ route, navigation }) => {
 
     const handleUpdate = async () => {
         try {
+
+            if (!address || !addressNumber || !description || !userId) {
+                Alert.alert('Por favor, ingrese todos los campos');
+                return;
+              }
+
             const formData = new FormData();
             formData.append('address', address);
             formData.append('addressNumber', addressNumber);
