@@ -4,6 +4,8 @@ import axios from 'axios';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { useCart } from '../CartContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
+
 
 const Checkout = ({ navigation }) => {
     const [locationId, setLocationId] = useState('');
@@ -51,6 +53,11 @@ const Checkout = ({ navigation }) => {
     const handleAdd = async () => {
         const idUser = await AsyncStorage.getItem('id')
         try {
+
+            if (!locationId || !paymentMethodID) {
+                Alert.alert('Por favor, ingrese todos los campos');
+                return;
+              }
             const formData = new FormData();
             formData.append('total', total);
             formData.append('location', locationId);

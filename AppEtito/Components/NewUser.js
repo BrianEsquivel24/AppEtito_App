@@ -3,6 +3,7 @@ import { View, Text, Button, Input, ScrollView, Image, Container, Heading } from
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { Alert } from 'react-native';
 
 const AgregarNewUser = ({ navigation }) => {
   const [nombre, setNombre] = useState('');
@@ -40,6 +41,31 @@ const AgregarNewUser = ({ navigation }) => {
 
   const handleAdd = async () => {
     try {
+
+
+      if (!nombre || !password || !email || !phone_number || !photo) {
+        Alert.alert('Por favor, ingrese todos los campos');
+        return;
+      }
+
+
+      // Validar que el email sea un email válido
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        Alert.alert('Por favor, ingrese un email válido');
+        return;
+      }
+
+      // Validar que la contraseña cumpla con los requisitos
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+      if (!passwordRegex.test(password)) {
+        Alert.alert(
+          'Contraseña inválida',
+          'La contraseña debe tener al menos una minúscula, una mayúscula, un número y ser mayor a 6 caracteres'
+        );
+        return;
+      }
+
       const formData = new FormData();
       formData.append('nombre', nombre);
       formData.append('email', email);
@@ -84,9 +110,9 @@ const AgregarNewUser = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      
-        <Heading style={styles.title}>CREAR CUENTA</Heading>
-        <Container>
+
+      <Heading style={styles.title}>CREAR CUENTA</Heading>
+      <Container>
         <Text style={styles.label}>Nombre:</Text>
         <Input
           value={nombre}
@@ -119,17 +145,17 @@ const AgregarNewUser = ({ navigation }) => {
           placeholder="Ingrese el número de teléfono"
           style={styles.input}
         />
-        </Container>
-        <Button onPress={handlePickDocument} full style={styles.button}>
-          <Text style={styles.buttonText}>Seleccionar Archivo</Text>
-        </Button>
+      </Container>
+      <Button onPress={handlePickDocument} full style={styles.button}>
+        <Text style={styles.buttonText}>Seleccionar Archivo</Text>
+      </Button>
 
-        {photo && <Image source={{ uri: photo }} style={styles.image} alt="Foto seleccionada" />}
+      {photo && <Image source={{ uri: photo }} style={styles.image} alt="Foto seleccionada" />}
 
-        <Button onPress={handleAdd} full style={styles.button}>
-          <Text style={styles.buttonText}>Crear Cuenta</Text>
-        </Button>
-      
+      <Button onPress={handleAdd} full style={styles.button}>
+        <Text style={styles.buttonText}>Crear Cuenta</Text>
+      </Button>
+
     </ScrollView>
   );
 };
@@ -142,7 +168,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '90%',
-   
+
   },
   title: {
 
@@ -174,8 +200,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 25,
     backgroundColor: '#FF8300',
-   
-    
+
+
   },
   image: {
     width: 150,

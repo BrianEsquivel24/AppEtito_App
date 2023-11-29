@@ -62,10 +62,10 @@ const Profile = ({ navigation }) => {
                 <Text style={styles.text}>Número de teléfono: {user.phone_number}</Text>
 
                 <Button onPress={goToLocation} mt={4} colorScheme="success">
-                  Agregar Location
+                  Agregar Direccion
                 </Button>
                 <Button onPress={goToPayment} mt={4} colorScheme="success">
-                  Agregar Card
+                  Agregar Tarjeta
                 </Button>
                 <Button onPress={handleLogout} mt={4} colorScheme="danger">
                   Cerrar Sesión

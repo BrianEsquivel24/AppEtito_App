@@ -3,7 +3,8 @@ import { View, Text, Button, Input, ScrollView, Select, Container, Heading } fro
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-AsyncStorage
+import { StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 
 const AgregarPaymentMethodUser = ({ navigation }) => {
     const [cardNumber, setCardNumber] = useState('');
@@ -13,6 +14,11 @@ const AgregarPaymentMethodUser = ({ navigation }) => {
 
     const handleAdd = async () => {
         try {
+
+            if (!cardNumber || !expiredDate || !securityCode) {
+                Alert.alert('Por favor, ingrese todos los campos');
+                return;
+            }
             const id_user = await AsyncStorage.getItem('id')
             const formData = new FormData();
             formData.append('cardNumber', cardNumber);
@@ -40,38 +46,90 @@ const AgregarPaymentMethodUser = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container style={{ paddingTop: 40 }} alignItems="center">
-                <Heading>Create Method Payment</Heading>
-                <Text>Card Number:</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+            <Heading style={styles.title}>Nueva Tarjeta</Heading>
+            <View style={styles.formContainer}>
+
+                <Text>Numero de la tarjeta:</Text>
                 <Input
                     value={cardNumber}
                     onChangeText={(text) => setCardNumber(text)}
                     placeholder="Ingrese la dirección"
+                    style={styles.input}
                 />
 
-                <Text>Expired Date:</Text>
+                <Text>Fecha de expiracion:</Text>
                 <Input
                     value={expiredDate}
                     onChangeText={(text) => setExpiredDate(text)}
                     placeholder="Ingrese la fecha asi yyyy-mm-dd"
+                    style={styles.input}
                 />
 
-                <Text>Security Code:</Text>
+                <Text>Codigo de seguridad:</Text>
                 <Input
                     value={securityCode}
                     onChangeText={(text) => setSecurityCode(text)}
                     placeholder="Ingrese la descripción"
+                    style={styles.input}
                 />
 
-                
+
                 {/* Botón para agregar el método de pago */}
-                <Button onPress={handleAdd} full title="Agregar Método de Pago">
-                    <Text>Agregar Método de Pago</Text>
+                <Button style={styles.button} onPress={handleAdd} full title="Agregar Método de Pago">
+                    <Text style={styles.buttonText}>Agregar Tarjeta</Text>
                 </Button>
-            </Container>
+            </View>
         </ScrollView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    formContainer: {
+        width: '90%',
+    },
+    title: {
+        color: '#344340',
+        fontWeight: 'bold',
+        fontSize: 40,
+        lineHeight: 120,
+        textAlign: 'center',
+    },
+    label: {
+        fontSize: 16,
+        marginBottom: 5,
+    },
+    input: {
+        marginBottom: 5,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        paddingHorizontal: 8,
+        paddingVertical: 6,
+        backgroundColor: '#fff',
+    },
+    button: {
+        width: '80%',
+        height: 50,
+        borderRadius: 25,
+        padding: 10,
+        marginTop: 25,
+        backgroundColor: '#FF8300',
+    },
+    image: {
+        width: 150,
+        height: 150,
+        marginTop: 20,
+    },
+
+    buttonText: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+    }
+});
 
 export default AgregarPaymentMethodUser;

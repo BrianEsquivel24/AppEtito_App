@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 const AgregarLocationUser = ({ navigation }) => {
     const [address, setAddress] = useState('');
@@ -13,6 +14,12 @@ const AgregarLocationUser = ({ navigation }) => {
 
     const handleAdd = async () => {
         try {
+
+            if (!address || !addressNumber || !description) {
+                Alert.alert('Por favor, ingrese todos los campos');
+                return;
+              }
+
             const id_user = await AsyncStorage.getItem('id')
             const formData = new FormData();
             formData.append('address', address);
@@ -41,9 +48,9 @@ const AgregarLocationUser = ({ navigation }) => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Heading style={styles.title}>New Location</Heading>
+            <Heading style={styles.title}>Nueva Direccion</Heading>
             <View style={styles.formContainer}>
-                <Text style={styles.label}>Address:</Text>
+                <Text style={styles.label}>Direccion:</Text>
                 <Input
                     value={address}
                     onChangeText={(text) => setAddress(text)}
@@ -51,23 +58,25 @@ const AgregarLocationUser = ({ navigation }) => {
                     style={styles.input}
                 />
 
-                <Text style={styles.label}>Address Number:</Text>
+                <Text style={styles.label}>Numero exterior:</Text>
                 <Input
                     value={addressNumber}
                     onChangeText={(text) => setAddressNumber(text)}
                     placeholder="Ingrese la location"
+                    style={styles.input}
                 />
 
-                <Text style={styles.label}>Description:</Text>
+                <Text style={styles.label}>Descripcion:</Text>
                 <Input
                     value={description}
                     onChangeText={(text) => setDescription(text)}
                     placeholder="Ingrese la description"
+                    style={styles.input}
                 />
 
                 {/* Botón para agregar la ubicación */}
-                <Button onPress={handleAdd} full title="Agregar Location">
-                    <Text>Agregar Location</Text>
+                <Button style={styles.button} onPress={handleAdd} full title="Agregar Location">
+                    <Text style={styles.buttonText}>Agregar Location</Text>
                 </Button>
             </View>
         </ScrollView>
@@ -115,6 +124,11 @@ const styles = StyleSheet.create({
         height: 150,
         marginTop: 20,
     },
+
+    buttonText: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+      }
 });
 
 export default AgregarLocationUser;
